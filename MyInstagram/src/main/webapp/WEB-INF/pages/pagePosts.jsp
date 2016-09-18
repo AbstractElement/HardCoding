@@ -7,19 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>All posts</title>
+    <title>StarExpress</title>
 </head>
 <body>
-  <h1>All posts</h1>
+  <h1><spring:message code="message.label.post"/></h1>
   <c:if test="${posts.size() > 0}">
     <c:forEach var="i" begin="0" end="${posts.size()-1}">
       <div>
         <table>
           <tr>
             <td rowspan="2">picture</td>
-            <td>Author: <c:out value="${posts.get(i).ownerPost}"/></td>
+            <td><spring:message code="message.label.author"/>: <c:out value="${posts.get(i).ownerPost}"/></td>
           </tr>
           <tr>
             <td><h5 class="time"><i><c:out value="${posts.get(i).timeOfPublication}"/></i></h5></td>
@@ -34,8 +35,12 @@
     </c:forEach>
   </c:if>
   <form action="/posts/newPost" method="get">
-    <button type="submit" >New Post</button>
+    <button type="submit" >
+      <spring:message code="message.label.newPost"/>
+    </button>
   </form>
-  <button type="button" onclick="history.back()">Back</button>
+  <button type="button" onclick="history.back()">
+    <spring:message code="message.label.back"/>
+  </button>
 </body>
 </html>

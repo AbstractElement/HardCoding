@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -9,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Star Express</title>
+    <title>StarExpress</title>
 </head>
 <body>
     <c:if test="${profileList.size() > 0}">
@@ -34,6 +35,8 @@
         <br/>
       </c:forEach>
     </c:if>
-  <button type="button" onclick="history.back()">Back</button>
+  <button type="button" onclick="history.back()">
+    <spring:message code="message.label.back"/>
+  </button>
 </body>
 </html>

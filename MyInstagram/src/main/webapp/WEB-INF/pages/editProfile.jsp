@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -9,45 +10,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit Profile</title>
+    <title>StarExpress</title>
 </head>
 <body>
     <form:form action="/profile/saveEdit" method="post" commandName="editProfile">
-        <%--<form:hidden path="idProfile"/>--%>
-        <%--<form:hidden path="currentUser"/>--%>
-
         <table>
             <tr>
-                <td>First Name:</td>
+                <td><spring:message code="message.label.firstName"/>:</td>
                 <td><form:input path="firstName" size="30" placeholder = "First Name"/></td>
             </tr>
             <tr>
-                <td>Last Name:</td>
+                <td><spring:message code="message.label.secondName"/>:</td>
                 <td><form:input path="lastName" size="30" placeholder = "Last Name"/></td>
             </tr>
             <tr>
-                <td>Current City:</td>
+                <td><spring:message code="message.label.currentCity"/>:</td>
                 <td><form:input path="currentCity" size="30" placeholder = "Current City"/></td>
             </tr>
             <tr>
-                <td>Phone Number:</td>
+                <td><spring:message code="message.label.phone"/>:</td>
                 <td><form:input path="phoneNumber" size="30" placeholder = "+375XXXXXXXXXX"/></td>
             </tr>
             <tr>
-                <td>Age:</td>
+                <td><spring:message code="message.label.age"/>:</td>
                 <td><form:input type="number" min="1" max="101" path="age" size="2"/></td>
             </tr>
             <tr>
-                <td>Sex:</td>
+                <td><spring:message code="message.label.sex"/>:</td>
                 <td>
-                    <form:radiobutton path="sex" value="Male"/>Male
-                    <form:radiobutton path="sex" value="Female" name="Female"/>Female
-                    <form:radiobutton path="sex" value="Other" name="Other"/>Other
+                    <form:radiobutton path="sex" value="Male"/><spring:message code="message.label.sex.male"/>
+                    <form:radiobutton path="sex" value="Female" name="Female"/><spring:message code="message.label.sex.female"/>
+                    <form:radiobutton path="sex" value="Other" name="Other"/><spring:message code="message.label.sex.other"/>
                 </td>
             </tr>
         </table>
-        <button type="submit">Submit</button>
-        <button type="button" onclick="history.back()">Back</button>
+        <button type="submit">
+            <spring:message code="message.label.submit"/>
+        </button>
+        <button type="button" onclick="history.back()">
+            <spring:message code="message.label.back"/>
+        </button>
     </form:form>
 </body>
 </html>

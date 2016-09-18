@@ -10,11 +10,11 @@
 	<link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <body style="background: url('/resources/images/r2d2-bg-mainpage.jpg')">
-	<span style="float: right">
+	<div class="form" id="mainPage">
+		<span style="float: right">
 		<a href="?lang=en">en</a>
 		<a href="?lang=ru">ru</a>
     </span>
-	<div class="form" id="mainPage">
 		<form:form method="post" commandName="userDTO">
 			<form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
 			<span id="login"><form:errors path="email"/></span><br/>

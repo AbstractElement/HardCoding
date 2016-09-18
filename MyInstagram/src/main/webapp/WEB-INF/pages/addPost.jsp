@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -9,14 +10,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>New Post</title>
+    <title>StarExpress</title>
 </head>
 <body>
     <form:form action="/posts/newPost" method="post" commandName="post">
       <form:textarea path="message" cols="40" rows="5"/><br/>
         <form:errors path="message"/>
-      <button type="submit">Submit</button>
-      <button type="button" onclick="history.back()">Back</button>
+      <button type="submit">
+          <spring:message code="message.label.submit" />
+      </button>
+      <button type="button" onclick="history.back()">
+          <spring:message code="message.label.back"/>
+      </button>
     </form:form>
 </body>
 </html>
