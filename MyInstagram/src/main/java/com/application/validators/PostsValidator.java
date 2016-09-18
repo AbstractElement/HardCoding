@@ -19,7 +19,7 @@ public class PostsValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Posts post = (Posts) o;
-        if (post.getMessage().toCharArray().length > 200)
+        if (post.getMessage().length() > 200)
             errors.rejectValue("message", "message.error.overflowMessage");
     }
 }

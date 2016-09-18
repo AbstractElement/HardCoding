@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -63,20 +64,37 @@ public class PostController {
         return "profilePage";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
     public String deletePost(Model model,
                              HttpSession session,
-                             HttpServletRequest request) throws Exception {
+                             @PathVariable int idPost) throws Exception {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        int idPost = Integer.parseInt(request.getParameter("id"));
         postsDAO.deletePost(idPost);
         model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
         return "profilePage";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editPost(){
+    @RequestMapping(value = "/edit/{idPost}", method = RequestMethod.GET)
+    public String editPost(Model model,
+                           HttpSession session,
+                           @PathVariable String idPost) throws Exception {
+        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+        Posts post = postsDAO.retrievePostById(idPost);
+        model.addAttribute("editPost", post);
+        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
         return "profilePage";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String saveEditPost(Model model,
+                               HttpSession session,
+                               @ModelAttribute("editPost") Posts post){
+        postsDAO.updatePost(post);
+        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
+        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        return "addPost";
     }
 }

@@ -5,11 +5,13 @@ import com.application.dao.ProfileDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
 import com.application.utils.ProfileUtils;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,21 +35,6 @@ public class ProfileController {
     @Autowired
     private ProfileUtils profileUtils;
 
-    /**
-     *
-     * @param modelMap - передаетс параметры текущего пользователя в модель, для отображения на страце профиля
-     * @param session - хранит id текущего пользователя находящегося в бд
-     * @return - возвращает на страницу текущего профиля
-     */
-//    @RequestMapping(value = "profilePage", method = RequestMethod.GET)
-//     public String toProfilePage(ModelMap modelMap,
-//                                 HttpSession session) throws Exception {
-//        int index = Integer.parseInt(session.getAttribute("idUser").toString());
-//        modelMap.addAttribute("profile", profileDAO.viewThisProfileFromUserId(index));
-//
-//        return "myProfile";
-//    }
-
     @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String toProfilePosts(ModelMap modelMap,
                                 HttpSession session) throws Exception {
@@ -56,11 +43,6 @@ public class ProfileController {
         return "pagePosts";
     }
 
-    /**
-     *
-     * @param model
-     * @return
-     */
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String toEdit(Model model,
                          HttpSession session,
@@ -70,19 +52,12 @@ public class ProfileController {
         return "editProfile";
     }
 
-    /**
-     *
-     * @param model
-     * @param profile
-     * @return
-     */
     @RequestMapping(value = "saveEdit",method = RequestMethod.POST)
     public String saveEdit(Model model,
                            HttpSession session,
                            @ModelAttribute("editProfile")Profile profile) throws Exception {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        Profile tableProfile = profileDAO.viewThisProfileFromUserId(idUser);
-        profileDAO.updateProfile(profile, tableProfile);
+        profileDAO.updateProfile(profile, idUser);
         model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
         return "profilePage";
@@ -93,5 +68,15 @@ public class ProfileController {
         List<Profile> profileList = profileUtils.viewAllProfiles();
         model.addAttribute("profileList", profileList);
         return "allPeople";
+    }
+
+    @RequestMapping(value = "viewProfile/{idProfile}", method = RequestMethod.GET)
+    public String viewProfilePage(Model model,
+                                  @PathVariable("idProfile") int idProfile){
+        Profile profile = profileDAO.viewThisProfileFromUserId(idProfile);
+        List<Posts> posts = postsDAO.retrievePostsByProfileId(idProfile);
+        model.addAttribute("profile", profile);
+        model.addAttribute("posts", posts);
+        return "profilePage";
     }
 }

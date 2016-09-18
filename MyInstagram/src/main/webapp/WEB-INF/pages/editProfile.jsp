@@ -47,6 +47,7 @@
             </tr>
         </table>
         <button type="submit">Submit</button>
+        <button type="button" onclick="history.back()">Back</button>
     </form:form>
 </body>
 </html>

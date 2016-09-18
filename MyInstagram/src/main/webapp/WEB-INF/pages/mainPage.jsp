@@ -10,12 +10,16 @@
 	<link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <body style="background: url('/resources/images/r2d2-bg-mainpage.jpg')">
+	<span style="float: right">
+		<a href="?lang=en">en</a>
+		<a href="?lang=ru">ru</a>
+    </span>
 	<div class="form" id="mainPage">
 		<form:form method="post" commandName="userDTO">
 			<form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
-			<span><form:errors path="email"/></span><br/>
+			<span id="login"><form:errors path="email"/></span><br/>
 			<form:password path="pass" placeholder="Password" size="30" cssClass="field"/><br/>
-			<span><form:errors path="pass"/></span><br/>
+			<span id="login"><form:errors path="pass"/></span><br/>
 			<button formaction="/account/login" type="submit">
 				<spring:message code="message.label.login"/>
 			</button>

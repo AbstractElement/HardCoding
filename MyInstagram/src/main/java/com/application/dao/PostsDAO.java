@@ -1,6 +1,7 @@
 package com.application.dao;
 
 import com.application.entity.Posts;
+import org.hibernate.Criteria;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface PostsDAO {
     public Posts createPost(Posts addPost) throws Exception;
-    public Posts retrievePostFromId(int id);
     public List<Posts> retrievePosts() throws Exception;
     public List<Posts> retrievePostsByProfileId(int idProfile);
-    public void updatePost();
+    public void updatePost(Posts post);
     public void deletePost(int id) throws Exception;
+    public Posts retrievePostById(String idPost);
 }

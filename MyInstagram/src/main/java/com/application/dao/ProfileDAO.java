@@ -10,6 +10,6 @@ import org.hibernate.Query;
  */
 public interface ProfileDAO {
     public void createProfile(User user, Profile profile);
-    public void updateProfile(Profile profile, Profile tableProfile);
+    public void updateProfile(Profile profile, int idUser);
     public Profile viewThisProfileFromUserId(int idProfile);
 }

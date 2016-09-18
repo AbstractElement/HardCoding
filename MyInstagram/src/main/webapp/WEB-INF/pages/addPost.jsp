@@ -16,6 +16,7 @@
       <form:textarea path="message" cols="40" rows="5"/><br/>
         <form:errors path="message"/>
       <button type="submit">Submit</button>
+      <button type="button" onclick="history.back()">Back</button>
     </form:form>
 </body>
 </html>

@@ -19,16 +19,21 @@
             <tr>
               <td rowspan="2">picture</td>
               <td>
-                <c:out value="${profileList.get(i).lastName} ${profileList.get(i).firstName}"/>
+                <a href="/profile/viewProfile/${profileList.get(i).idProfile}">
+                  ${profileList.get(i).lastName} ${profileList.get(i).firstName}
+                </a>
               </td>
             </tr>
             <tr>
-              <td><h5><i><c:out value="${profileList.get(i).currentUser.email}"/></i></h5></td>
+              <td>
+                <h5><i>${profileList.get(i).currentUser.email}</i></h5>
+              </td>
             </tr>
           </table>
         </div>
         <br/>
       </c:forEach>
     </c:if>
+  <button type="button" onclick="history.back()">Back</button>
 </body>
 </html>

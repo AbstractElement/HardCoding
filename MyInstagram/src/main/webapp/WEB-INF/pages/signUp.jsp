@@ -17,11 +17,11 @@
   <div class="form" id="signUp">
     <form:form method="post" action="/account/registration" commandName="userDTO">
       <form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
-        <form:errors path="email"/><br/>
+      <span id="reg"><form:errors path="email"/></span><br/>
       <form:password path="pass" placeholder="Password" size="30" cssClass="field"/><br/>
-        <form:errors path="pass"/><br/>
+      <span id="reg"><form:errors path="pass"/></span><br/>
       <form:password path="repeatPassword" placeholder="Repeat password" size="30" cssClass="field"/><br/>
-        <form:errors path="repeatPassword"/><br/>
+      <span id="reg"><form:errors path="repeatPassword"/></span><br/>
       <button type="submit"><spring:message code="message.label.signup"/></button>
       <button type="submit" formaction="/" formmethod="get">Back</button>
     </form:form>

@@ -34,42 +34,21 @@ public class LoginController {
 	@Autowired
 	private PostsDAO postsDAO;
 
-	/**
-	 *
-	 * @param modelMap - передает пустой объект пользователя для отрисовки и заполнения	на странице
-	 * @return - возвращает на главную страницу
-	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String toMainPage(ModelMap modelMap) {
+	public String toMainPage(ModelMap modelMap,
+							 HttpSession session) {
+		session.setAttribute("idUser", "");
 		modelMap.addAttribute("userDTO", new UserDTO());
 		return "mainPage";
 	}
 
-	/**
-	 *
-	 * @param modelMap - передает для заполнения на страницу регистрации объект пользователя
-	 * @param userDTO - принимаем объект с пользователя с главной страницы
-	 * @param result - ошибки
-	 * @return - переход на страницу регистрации
-	 */
 	@RequestMapping(method = RequestMethod.GET, value = "signup")
 	public String toSignUp(ModelMap modelMap,
-						   @ModelAttribute("userDTO") UserDTO userDTO,
-						   BindingResult result) {
+						   @ModelAttribute("userDTO") UserDTO userDTO) {
 		modelMap.addAttribute("userDTO", userDTO);
 		return "signUp";
 	}
 
-	/**
-	 *
-	 * @param modelMap - применяется в случае обнаружения валидатором ошибки, модель получает пустой объект пользователя
-	 *                 и возвращает главную страницу
-	 * @param session - если введенные данные корректны, id пользователя записываются в текущую сессию
-	 * @param userDTO - получаем заполненный объект пользователя
-	 * @param result - ошибки
-	 * @return - при корректном вводе возвращает страницу профиля
-	 * @throws Exception
-	 */
 	@RequestMapping(value = "account/login", method = RequestMethod.POST)
 	public String toMainPage(ModelMap modelMap,
 							 HttpSession session,
@@ -89,14 +68,6 @@ public class LoginController {
 		}
 	}
 
-	/**
-	 *
-	 * @param modelMap
-	 * @param userDTO
-	 * @param result
-	 * @return
-	 * @throws Exception
-	 */
 	@RequestMapping(value = "account/registration", method = RequestMethod.POST)
 	public String saveSignUp(ModelMap modelMap,
 							 @ModelAttribute(value = "userDTO")UserDTO userDTO,

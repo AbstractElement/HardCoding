@@ -25,7 +25,7 @@
             <td><h5 class="time"><i><c:out value="${posts.get(i).timeOfPublication}"/></i></h5></td>
           </tr>
           <tr><td colspan="2">
-                <textarea cols="40" rows="5" readonly><c:out value="${posts.get(i).message}"/>
+                <textarea cols="40" rows="5" disabled><c:out value="${posts.get(i).message}"/>
                 </textarea>
           </td></tr>
         </table>
@@ -33,7 +33,7 @@
       <br/>
     </c:forEach>
   </c:if>
-  <form action="/profile/newPost" method="get">
+  <form action="/posts/newPost" method="get">
     <button type="submit" >New Post</button>
   </form>
   <button type="button" onclick="history.back()">Back</button>

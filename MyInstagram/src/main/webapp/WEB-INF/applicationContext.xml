@@ -5,13 +5,12 @@
 
     <bean id="user" class="com.application.entity.User"/>
     <bean id="userDTO" class="com.application.dto.UserDTO"/>
-    <bean id="userDAO" class="com.application.dao.daoimpl.UserDAOImpl"/>
+    <bean id="userDAO" class="com.application.dao.impl.UserDAOImpl"/>
     <bean id="userValidator" class="com.application.validators.UserValidator"/>
     <bean id="userDTOValidator" class="com.application.validators.UserDTOValidator"/>
-    <bean id="profileDAO" class="com.application.dao.daoimpl.ProfileDAOImpl"/>
-    <bean id="userUtils" class="com.application.utils.userUtilsImpl.UserUtilsImpl"/>
-    <bean id="postsDAO" class="com.application.dao.daoimpl.PostsDAOImpl"/>
+    <bean id="profileDAO" class="com.application.dao.impl.ProfileDAOImpl"/>
+    <bean id="userUtils" class="com.application.utils.impl.UserUtilsImpl"/>
+    <bean id="postsDAO" class="com.application.dao.impl.PostsDAOImpl"/>
     <bean id="postsValidator" class="com.application.validators.PostsValidator"/>
-    <bean id="profileUtils" class="com.application.utils.profileUtilsImpl.ProfileUtilsImpl"/>
-    <!--<import resource="hibernate-context.xml" />-->
+    <bean id="profileUtils" class="com.application.utils.impl.ProfileUtilsImpl"/>
 </beans>
