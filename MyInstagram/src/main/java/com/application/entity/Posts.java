@@ -12,7 +12,7 @@ import java.util.Date;
 public class Posts {
     @Id
     @Column(name = "idPost")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPosts;
 
     @Column(name = "message")
@@ -24,7 +24,7 @@ public class Posts {
     @Column(name = "ownerPost")
     private String ownerPost;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "idProfile")
     private Profile profile;
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class User implements Serializable{
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Basic
@@ -23,7 +23,7 @@ public class User implements Serializable{
     @Column(name = "email", length = 45, unique = true)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentUser")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "currentUser")
     private Profile profile;
 
     public void setProfile(Profile profile) {

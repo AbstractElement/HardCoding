@@ -16,7 +16,7 @@ body{
     background-color: black;
 }
 #edit{
-    margin-left: 80%;
+    margin-left: 70%;
     border-radius: 10px;
     font-family: Times New Roman, serif;
     font-size: medium;
@@ -76,4 +76,17 @@ div#profilePage{
 }
 #posts{
     margin-left: 35%;
+}
+#success{
+    margin-top: 200px;
+    margin-left: 35%;
+    font-size: 25px;
+    color: azure;
+    position: absolute;
+}
+#success    button {
+    border-radius: 10px;
+    margin-left: 40%;
+    font-size: 15px;
+    margin-top: 10px;
 }

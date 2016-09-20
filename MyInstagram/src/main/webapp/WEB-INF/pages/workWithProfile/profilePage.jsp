@@ -25,6 +25,7 @@
 <spring:message code="message.label.author" var="author"/>
 <spring:message code="message.label.delete" var="del"/>
 <spring:message code="message.label.notPublication" var="noPubl"/>
+<spring:message code="message.label.saveEdit" var="save"/>
 <%--   --%>
 
 <html>
@@ -91,7 +92,7 @@
                                                     <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
                                                         <form:hidden path="idPosts"/>
                                                         <form:textarea path="message" cols="40" rows="5"/><br/>
-                                                        <button type="submit">Save edit</button>
+                                                        <button type="submit">${save}</button>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <textarea cols="40" rows="5" disabled>${posts.get(i).message}

@@ -1,7 +1,7 @@
 package com.application.validators;
 
+import com.application.dao.UserDAO;
 import com.application.dto.UserDTO;
-import com.application.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -15,7 +15,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UserDTOValidator implements Validator {
     @Autowired
-    private UserUtils userUtils;
+    private UserDAO userDAO;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -26,9 +26,9 @@ public class UserDTOValidator implements Validator {
     public void validate(Object userDTO, Errors errors) {
         UserDTO currentUser = (UserDTO) userDTO;
         try {
-            if(!userUtils.thisUserIsExist(currentUser.getEmail()))
+            if(!userDAO.thisUserIsExist(currentUser.getEmail()))
                 errors.rejectValue("email", "message.error.wrongEmail");
-            else if(!userUtils.thisTrueUserPassword(currentUser.getPass(), currentUser.getEmail()))
+            else if(!userDAO.thisTrueUserPassword(currentUser.getPass(), currentUser.getEmail()))
                 errors.rejectValue("pass", "message.error.wrongPass");
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class UserDTOValidator implements Validator {
         try {
             if(!currentUser.getPass().equals(currentUser.getRepeatPassword()))
                 errors.rejectValue("repeatPassword", "message.error.notEqualsPass");
-            else if(userUtils.thisUserIsExist(currentUser.getEmail()))
+            else if(userDAO.thisUserIsExist(currentUser.getEmail()))
                 errors.rejectValue("email", "message.error.emailIsExist");
         } catch (Exception e) {
             e.printStackTrace();

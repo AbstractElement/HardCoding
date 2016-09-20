@@ -5,7 +5,6 @@ import com.application.dao.UserDAO;
 import com.application.dto.UserDTO;
 import com.application.entity.User;
 import com.application.service.userService.UserService;
-import com.application.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

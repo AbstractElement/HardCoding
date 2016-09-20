@@ -4,6 +4,7 @@ import com.application.dao.PostsDAO;
 import com.application.dao.ProfileDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
+import com.application.service.postsService.PostsService;
 import com.application.service.profileService.ProfileService;
 import com.application.validators.PostsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class PostController {
     private ProfileService profileService;
 
     @Autowired
-    private PostsDAO postsDAO;
+    private PostsService postsService;
 
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
     public String toNewPost(Model model){
@@ -56,8 +57,8 @@ public class PostController {
         post.setTimeOfPublication(new Date());
         post.setProfile(tableProfile);
         post.setOwnerPost(tableProfile.getCurrentUser().getEmail());
-        postsDAO.createPost(post);
-        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        postsService.createPost(post);
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
         return "workWithProfile/profilePage";
     }
@@ -67,9 +68,9 @@ public class PostController {
                              HttpSession session,
                              @PathVariable int idPost) throws Exception {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        postsDAO.deletePost(idPost);
+        postsService.deletePost(idPost);
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
-        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         return "workWithProfile/profilePage";
     }
 
@@ -78,9 +79,9 @@ public class PostController {
                            HttpSession session,
                            @PathVariable String idPost) throws Exception {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        Posts post = postsDAO.retrievePostById(idPost);
+        Posts post = postsService.retrievePostById(idPost);
         model.addAttribute("editPost", post);
-        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
         return "workWithProfile/profilePage";
     }
@@ -89,10 +90,10 @@ public class PostController {
     public String saveEditPost(Model model,
                                HttpSession session,
                                @ModelAttribute("editPost") Posts post){
-        postsDAO.updatePost(post);
+        postsService.updatePost(post);
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
-        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         model.addAttribute("editPost", new Posts());
         return "workWithProfile/profilePage";
     }

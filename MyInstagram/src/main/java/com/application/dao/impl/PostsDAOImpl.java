@@ -4,7 +4,10 @@ import com.application.dao.PostsDAO;
 import com.application.entity.Posts;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -13,46 +16,45 @@ import java.util.List;
  */
 
 @Repository
-public class PostsDAOImpl extends HibernateDAO implements PostsDAO {
+@Transactional
+public class PostsDAOImpl implements PostsDAO {
+
+    @Resource(name = "sessionFactory")
+    private SessionFactory sessionFactory;
 
     @Override
     public Posts createPost(Posts addPost) throws Exception {
         try {
-            begin();
-            getSession().save(addPost);
-            commit();
+            sessionFactory.getCurrentSession().save(addPost);
             return addPost;
         } catch (HibernateException e) {
             return null;
         }
     }
+
     @Override
     public List<Posts> retrievePosts() throws Exception {
-        Query query = getSession().createQuery("from Posts order by timeOfPublication desc");
-        List<Posts> postsList = query.list();
-        return postsList;
+        Query query = sessionFactory.getCurrentSession().createQuery("from Posts order by timeOfPublication desc");
+        return query.list();
     }
 
     @Override
     public List<Posts> retrievePostsByProfileId(int idProfile){
-        Query query = getSession().createQuery("from Posts where profile = :idProfile order by timeOfPublication desc");
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from Posts where profile = :idProfile order by timeOfPublication desc");
         query.setInteger("idProfile", idProfile);
-        List<Posts> postsList = query.list();
-        return postsList;
+        return query.list();
     }
 
     @Override
     public void updatePost(Posts posts) {
         try{
-            begin();
             Posts tablePost = retrievePostById(String.valueOf(posts.getIdPosts()));
             tablePost.setMessage(posts.getMessage());
             tablePost.setTimeOfPublication(new Date());
-            getSession().update(tablePost);
-            commit();
+            sessionFactory.getCurrentSession().update(tablePost);
         }
         catch (HibernateException ex){
-            rollback();
             ex.printStackTrace();
         }
     }
@@ -60,18 +62,15 @@ public class PostsDAOImpl extends HibernateDAO implements PostsDAO {
     @Override
     public void deletePost(int id) throws Exception {
         try{
-            begin();
-            getSession().delete(retrievePostById(String.valueOf(id)));
-            commit();
+            sessionFactory.getCurrentSession().delete(retrievePostById(String.valueOf(id)));
         }catch (HibernateException ex){
-            rollback();
             ex.printStackTrace();
         }
     }
 
     @Override
     public Posts retrievePostById(String idPost) {
-        Query query = getSession().createQuery("from Posts where idPosts = :idPost");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Posts where idPosts = :idPost");
         query.setString("idPost", idPost);
         return (Posts)query.uniqueResult();
     }

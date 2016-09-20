@@ -18,11 +18,14 @@
 <html>
 <head>
     <title>StarExpress</title>
+    <link rel="stylesheet" href="/resources/styles/my_styles.css" type="text/css">
 </head>
-<body>
-    ${success}<br/>
-    <form method="get" action="/">
-        <button type="submit">${submit}</button>
-    </form>
+<body background="/resources/images/posts-page.jpg">
+    <div>
+        <form id="success" method="get" action="/">
+            <span>${success}<br/></span>
+            <button type="submit">${submit}</button>
+        </form>
+    </div>
 </body>
 </html>

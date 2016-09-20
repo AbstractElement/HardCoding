@@ -1,18 +1,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/cache"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="com.application"/>
-
 
     <mvc:resources mapping="/resources/**" location="/resources"/>
 
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -50,35 +54,41 @@
 
     <mvc:annotation-driven />
 
-    <!--&lt;!&ndash;Нужен для получения свойств из файла jdbc.properties&ndash;&gt;-->
-    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="location" value="classpath:jdbc.properties"/>-->
-    <!--</bean>-->
+    <!--Нужен для получения свойств из файла jdbc.properties-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
 
-    <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>-->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <!--&lt;!&ndash; Определение источника данных - мост между СУБД и Hibernate.&ndash;&gt;-->
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="${jdbc.driverClassName}"/>-->
-        <!--<property name="url" value="${jdbc.url}"/>-->
-        <!--<property name="username" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-    <!--</bean>-->
+    <!-- Определение источника данных - мост между СУБД и Hibernate.-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
 
-    <!--&lt;!&ndash; Фабрика, которая будет строить Hibernate-сессии &ndash;&gt;-->
-    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">-->
-        <!--&lt;!&ndash; бины снизу как бы ссылаются на конфигурационный файл hibernate-cfg, настройки которого описаны в dataSource-->
-       <!--поэтому у нас hibernate.cfg.xml не используется   &ndash;&gt;-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="packagesToScan" value="com.application.entity"/>-->
-    <!--</bean>-->
+    <!-- Фабрика, которая будет строить Hibernate-сессии -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!-- бины снизу как бы ссылаются на конфигурационный файл hibernate-cfg, настройки которого описаны в dataSource
+       поэтому у нас hibernate.cfg.xml не используется   -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.application.entity"/>
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+            </props>
+        </property>
+    </bean>
 
-    <!--&lt;!&ndash; СЛЕДУЮЩАЯ секция для того, чтобы работал механизм транзакций с использованием @Transactional  &ndash;&gt;-->
-    <!--&lt;!&ndash;  tx:annotation-driven включает механизм управления транзакциями через аннотации &ndash;&gt;-->
-    <!--<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>-->
-    <!--&lt;!&ndash; Менеджер транзакций&ndash;&gt;-->
-    <!--<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">-->
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    <!--</bean>-->
+    <!-- СЛЕДУЮЩАЯ секция для того, чтобы работал механизм транзакций с использованием @Transactional  -->
+    <!--  tx:annotation-driven включает механизм управления транзакциями через аннотации -->
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+    <!-- Менеджер транзакций-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>

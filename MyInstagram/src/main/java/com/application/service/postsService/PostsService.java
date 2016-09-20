@@ -1,13 +1,13 @@
-package com.application.dao;
+package com.application.service.postsService;
 
 import com.application.entity.Posts;
 
 import java.util.List;
 
 /**
- * Created by Vladislav on 09.09.2016.
+ * Created by Vladislav on 20.09.2016.
  */
-public interface PostsDAO {
+public interface PostsService {
     public Posts createPost(Posts addPost) throws Exception;
     public List<Posts> retrievePosts() throws Exception;
     public List retrievePostsByProfileId(int idProfile);

@@ -19,7 +19,7 @@ CREATE TABLE db_starexpress.profile
   lastName VARCHAR(45),
   currentCity VARCHAR(45),
   phoneNumber VARCHAR(14),
-  age INT,
+  age INT DEFAULT 0,
   sex VARCHAR(10),
   avatar VARCHAR(45)
 );

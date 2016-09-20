@@ -1,11 +1,10 @@
 package com.application.controllers;
 
 import com.application.dao.PostsDAO;
-import com.application.dao.ProfileDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
+import com.application.service.postsService.PostsService;
 import com.application.service.profileService.ProfileService;
-import com.application.utils.ProfileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +24,13 @@ import java.util.List;
 @RequestMapping("/profile")
 public class ProfileController {
     @Autowired
-    private PostsDAO postsDAO;
-
+    private PostsService postsService;
     @Autowired
     private ProfileService profileService;
 
     @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String toProfilePosts(ModelMap modelMap) throws Exception {
-        modelMap.addAttribute("posts", postsDAO.retrievePosts());
+        modelMap.addAttribute("posts", postsService.retrievePosts());
         return "workWithPosts/pagePosts";
     }
 
@@ -52,7 +50,7 @@ public class ProfileController {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         profileService.updateProfile(profile, idUser);
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
-        model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         return "workWithProfile/profilePage";
     }
 
@@ -67,7 +65,7 @@ public class ProfileController {
     public String viewProfilePage(Model model,
                                   @PathVariable("idProfile") int idProfile){
         Profile profile = profileService.viewThisProfileFromUserId(idProfile);
-        List<Posts> posts = postsDAO.retrievePostsByProfileId(idProfile);
+        List<Posts> posts = postsService.retrievePostsByProfileId(idProfile);
         model.addAttribute("profile", profile);
         model.addAttribute("posts", posts);
         return "workWithProfile/profilePage";

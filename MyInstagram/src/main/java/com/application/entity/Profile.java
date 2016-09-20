@@ -13,7 +13,7 @@ import java.util.List;
 public class Profile implements Serializable {
     @Id
     @Column(name = "idProfile")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProfile;
 
     @Basic
@@ -44,11 +44,11 @@ public class Profile implements Serializable {
     @Column(name = "avatar")
     private String avatar = "1.jpg";
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser")
     private User currentUser;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "profile")
     private List<Posts> posts = new ArrayList<Posts>();
 
     public String getAvatar() {

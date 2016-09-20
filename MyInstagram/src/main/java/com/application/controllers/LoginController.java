@@ -4,6 +4,7 @@ import com.application.dao.PostsDAO;
 import com.application.entity.Profile;
 import com.application.entity.User;
 import com.application.dto.UserDTO;
+import com.application.service.postsService.PostsService;
 import com.application.service.profileService.ProfileService;
 import com.application.service.userService.UserService;
 import com.application.validators.UserDTOValidator;
@@ -27,7 +28,7 @@ public class LoginController {
 	@Autowired
 	private ProfileService profileService;
 	@Autowired
-	private PostsDAO postsDAO;
+	private PostsService postsService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String toMainPage(ModelMap modelMap,
@@ -57,7 +58,7 @@ public class LoginController {
 		else {
 			User user = userService.retrieveUser(userDTO.getEmail(), userDTO.getPass());
 			session.setAttribute("idUser", user.getId());
-			modelMap.addAttribute("posts", postsDAO.retrievePostsByProfileId(user.getId()));
+			modelMap.addAttribute("posts", postsService.retrievePostsByProfileId(user.getId()));
 			modelMap.addAttribute("profile", profileService.viewThisProfileFromUserId(user.getId()));
 			return "workWithProfile/profilePage";
 		}

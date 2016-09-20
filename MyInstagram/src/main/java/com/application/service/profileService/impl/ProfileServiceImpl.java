@@ -4,7 +4,6 @@ import com.application.dao.ProfileDAO;
 import com.application.entity.Profile;
 import com.application.entity.User;
 import com.application.service.profileService.ProfileService;
-import com.application.utils.ProfileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,6 @@ import java.util.List;
 public class ProfileServiceImpl implements ProfileService{
     @Autowired
     private ProfileDAO profileDAO;
-
-    @Autowired
-    private ProfileUtils profileUtils;
 
     @Override
     public void createProfile(User user, Profile profile) {
@@ -39,6 +35,6 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public List<Profile> viewAllProfiles() {
-        return profileUtils.viewAllProfiles();
+        return profileDAO.viewAllProfiles();
     }
 }
