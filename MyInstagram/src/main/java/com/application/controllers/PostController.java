@@ -95,6 +95,7 @@ public class PostController {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
-        return "addPost";
+        model.addAttribute("editPost", new Posts());
+        return "profilePage";
     }
 }

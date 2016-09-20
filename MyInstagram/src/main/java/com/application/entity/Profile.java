@@ -40,7 +40,11 @@ public class Profile implements Serializable{
 
     @Basic
     @Column(name = "sex")
-    private String sex = "";
+    private String sex = "other.png";
+
+    @Basic
+    @Column(name = "avatar")
+    private String avatar = "1.jpg";
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "idUser")
@@ -49,7 +53,13 @@ public class Profile implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
     private List<Posts> posts = new ArrayList<Posts>();
 
+    public String getAvatar() {
+        return avatar;
+    }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
     public List<Posts> getPosts() {
         return posts;
     }

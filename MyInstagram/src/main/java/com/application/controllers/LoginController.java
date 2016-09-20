@@ -7,9 +7,7 @@ import com.application.entity.Profile;
 import com.application.entity.User;
 import com.application.dao.UserDAO;
 import com.application.dto.UserDTO;
-import com.application.utils.UserUtils;
 import com.application.validators.UserDTOValidator;
-import com.application.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-//	@Autowired
-//	private UserValidator userValidator;
 	@Autowired
 	private UserDTOValidator userDTOValidator;
 	@Autowired

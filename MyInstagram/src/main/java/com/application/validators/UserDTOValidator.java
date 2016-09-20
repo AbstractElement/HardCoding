@@ -30,10 +30,6 @@ public class UserDTOValidator implements Validator {
                 errors.rejectValue("email", "message.error.wrongEmail");
             else if(!userUtils.thisTrueUserPassword(currentUser.getPass(), currentUser.getEmail()))
                 errors.rejectValue("pass", "message.error.wrongPass");
-//            else {
-//                ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "message.error.email");
-//                ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pass", "message.error.password");
-//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +39,6 @@ public class UserDTOValidator implements Validator {
         UserDTO currentUser = (UserDTO) userDTO;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "message.error.email");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pass", "message.error.password");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "repeatPassword", "message.error.password");
         try {
             if(!currentUser.getPass().equals(currentUser.getRepeatPassword()))
                 errors.rejectValue("repeatPassword", "message.error.notEqualsPass");

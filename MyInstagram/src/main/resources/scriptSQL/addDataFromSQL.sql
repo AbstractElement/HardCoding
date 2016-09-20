@@ -4,7 +4,7 @@ INSERT INTO db_starexpress.user VALUES (2, 'first@test', 1234);
 INSERT INTO db_starexpress.user VALUES (3, 'second@test', 1234);
 
 #From profile table
-INSERT INTO db_starexpress.profile VALUES (1, 1, 'Tester', 'Test', 'Earth', '7778', 99, 'Other');
+INSERT INTO db_starexpress.profile VALUES (1, 1, 'Tester', 'Test', 'Earth', '7778', 99, 'Other', '2.jpg');
 INSERT INTO db_starexpress.profile(idProfile, idUser, lastName, currentCity)
   VALUES (2, 2, 'First', 'Minsk');
 INSERT INTO db_starexpress.profile(idProfile, idUser, firstName, lastName, age)

@@ -2,6 +2,7 @@ package com.application.converters;
 
 import com.application.dto.UserDTO;
 import com.application.entity.User;
+import com.application.service.ProtectedPassword;
 
 /**
  * Created by Vladislav on 10.09.2016.

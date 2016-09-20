@@ -8,19 +8,20 @@ CREATE TABLE db_starexpress.user
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   email VARCHAR(45) UNIQUE NOT NULL,
-  pass VARCHAR(45)  NOT NULL
+  pass VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE db_starexpress.profile
 (
   idProfile INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   idUser INT REFERENCES user(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  firstName VARCHAR(45) DEFAULT '',
-  lastName VARCHAR(45) DEFAULT '',
-  currentCity VARCHAR(45) DEFAULT '',
-  phoneNumber VARCHAR(14) DEFAULT '',
-  age INT DEFAULT 0,
-  sex VARCHAR(10) DEFAULT ''
+  firstName VARCHAR(45),
+  lastName VARCHAR(45),
+  currentCity VARCHAR(45),
+  phoneNumber VARCHAR(14),
+  age INT,
+  sex VARCHAR(10),
+  avatar VARCHAR(45)
 );
 
 CREATE TABLE db_starexpress.posts

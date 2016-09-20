@@ -38,7 +38,7 @@ public class ProfileController {
     @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String toProfilePosts(ModelMap modelMap,
                                 HttpSession session) throws Exception {
-        int index = Integer.parseInt(session.getAttribute("idUser").toString());
+//        int index = Integer.parseInt(session.getAttribute("idUser").toString());
         modelMap.addAttribute("posts", postsDAO.retrievePosts());
         return "pagePosts";
     }

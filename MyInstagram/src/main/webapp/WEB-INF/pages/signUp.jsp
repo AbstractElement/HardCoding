@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -7,7 +8,12 @@
   Time: 7:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%--i18--%>
+<spring:message code="message.label.signup" var="signup"/>
+<spring:message code="message.label.back" var="back"/>
+<%--   --%>
+
 <html>
 <head>
     <title>StarExpress</title>
@@ -28,12 +34,8 @@
       <span id="reg">
         <form:errors path="repeatPassword"/>
       </span><br/>
-      <button type="submit">
-        <spring:message code="message.label.signup"/>
-      </button>
-      <button type="submit" formaction="/" formmethod="get">
-        <spring:message code="message.label.back"/>
-      </button>
+      <button type="submit">${signup}</button>
+      <button type="submit" formaction="/" formmethod="get">${back}</button>
     </form:form>
   </div>
 </body>
