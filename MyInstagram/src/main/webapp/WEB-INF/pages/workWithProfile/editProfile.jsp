@@ -40,6 +40,8 @@
 <c:if test="${sessionScope.idUser != null}">
     <body>
         <form:form action="/profile/saveEdit" method="post" commandName="editProfile">
+            <%--<form:input path="idProfile"/>--%>
+            <%--<form:input path="currentUser"/>--%>
             <table>
                 <tr>
                     <td>${firstName}:</td>

@@ -1,6 +1,5 @@
 package com.application.controllers;
 
-import com.application.dao.PostsDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
 import com.application.service.postsService.PostsService;
@@ -38,8 +37,8 @@ public class ProfileController {
     public String toEdit(Model model,
                          HttpSession session,
                          @ModelAttribute("editProfile")Profile profile){
-        model.addAttribute("editProfile", profileService.viewThisProfileFromUserId
-                (Integer.parseInt(session.getAttribute("idUser").toString())));
+        Profile profile1 = profileService.viewThisProfileFromUserId(Integer.parseInt(session.getAttribute("idUser").toString()));
+        model.addAttribute("editProfile", profile1);
         return "workWithProfile/editProfile";
     }
 
