@@ -1,7 +1,6 @@
 package com.application.dao;
 
 import com.application.entity.Posts;
-import org.hibernate.Criteria;
 
 import java.util.List;
 

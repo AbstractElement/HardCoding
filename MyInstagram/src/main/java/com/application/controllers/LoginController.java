@@ -1,12 +1,11 @@
 package com.application.controllers;
 
-import com.application.converters.ConvertUserDTOInUser;
 import com.application.dao.PostsDAO;
-import com.application.dao.ProfileDAO;
 import com.application.entity.Profile;
 import com.application.entity.User;
-import com.application.dao.UserDAO;
 import com.application.dto.UserDTO;
+import com.application.service.profileService.ProfileService;
+import com.application.service.userService.UserService;
 import com.application.validators.UserDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,25 +23,25 @@ public class LoginController {
 	@Autowired
 	private UserDTOValidator userDTOValidator;
 	@Autowired
-	private UserDAO userDAO;
+	private UserService userService;
 	@Autowired
-	private ProfileDAO profileDAO;
+	private ProfileService profileService;
 	@Autowired
 	private PostsDAO postsDAO;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String toMainPage(ModelMap modelMap,
 							 HttpSession session) {
-		session.setAttribute("idUser", "");
+		session.invalidate();
 		modelMap.addAttribute("userDTO", new UserDTO());
-		return "mainPage";
+		return "login/mainPage";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "signup")
 	public String toSignUp(ModelMap modelMap,
 						   @ModelAttribute("userDTO") UserDTO userDTO) {
 		modelMap.addAttribute("userDTO", userDTO);
-		return "signUp";
+		return "registration/signUp";
 	}
 
 	@RequestMapping(value = "account/login", method = RequestMethod.POST)
@@ -53,14 +52,14 @@ public class LoginController {
 		userDTOValidator.validate(userDTO, result);
 		if(result.hasErrors()) {
 			modelMap.addAttribute("userDTO", userDTO);
-			return "mainPage";
+			return "login/mainPage";
 		}
 		else {
-			User user = userDAO.retrieveUser(userDTO.getEmail(), userDTO.getPass());
+			User user = userService.retrieveUser(userDTO.getEmail(), userDTO.getPass());
 			session.setAttribute("idUser", user.getId());
 			modelMap.addAttribute("posts", postsDAO.retrievePostsByProfileId(user.getId()));
-			modelMap.addAttribute("profile", profileDAO.viewThisProfileFromUserId(user.getId()));
-			return "profilePage";
+			modelMap.addAttribute("profile", profileService.viewThisProfileFromUserId(user.getId()));
+			return "workWithProfile/profilePage";
 		}
 	}
 
@@ -71,13 +70,13 @@ public class LoginController {
 		userDTOValidator.validateFromSignUp(userDTO, result);
 		if (result.hasErrors()) {
 			modelMap.addAttribute("userDTO", userDTO);
-			return "signUp";
+			return "registration/signUp";
 		}
 		else {
-			User addUser = ConvertUserDTOInUser.convertUserDTOInUser(new User(), userDTO);
-			userDAO.createUser(addUser);
-			profileDAO.createProfile(addUser, new Profile());
-			return "successful";
+			User addUser = userService.convertUserDTOInUser(new User(), userDTO);
+			userService.createUser(addUser);
+			profileService.createProfile(addUser, new Profile());
+			return "registration/successful";
 		}
 	}
 }

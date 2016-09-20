@@ -19,7 +19,7 @@
 		<span style="float: right; margin-top: 220px; margin-right: 10px;">
 		<a href="?lang=en">en</a>
 		<a href="?lang=ru">ru</a>
-    </span>
+	</span>
 		<form:form method="post" commandName="userDTO">
 			<form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
 			<span id="login">

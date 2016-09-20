@@ -1,7 +1,6 @@
 package com.application.validators;
 
 import com.application.entity.User;
-import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

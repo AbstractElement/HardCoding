@@ -71,6 +71,9 @@ span#login{
 
 }
 div#profilePage{
-    width: 70%;
+    width: 50%;
     margin: auto;
+}
+#posts{
+    margin-left: 35%;
 }

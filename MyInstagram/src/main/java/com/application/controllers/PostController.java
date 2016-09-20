@@ -4,10 +4,9 @@ import com.application.dao.PostsDAO;
 import com.application.dao.ProfileDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
+import com.application.service.profileService.ProfileService;
 import com.application.validators.PostsValidator;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
@@ -32,7 +30,7 @@ public class PostController {
     private PostsValidator postsValidator;
 
     @Autowired
-    private ProfileDAO profileDAO;
+    private ProfileService profileService;
 
     @Autowired
     private PostsDAO postsDAO;
@@ -40,7 +38,7 @@ public class PostController {
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
     public String toNewPost(Model model){
         model.addAttribute("post", new Posts());
-        return "addPost";
+        return "workWithPosts/addPost";
     }
 
     @RequestMapping(value = "/newPost", method = RequestMethod.POST)
@@ -51,17 +49,17 @@ public class PostController {
         postsValidator.validate(post, result);
         if (result.hasErrors()) {
             model.addAttribute("post", post);
-            return "addPost";
+            return "workWithPosts/addPost";
         }
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        Profile tableProfile = profileDAO.viewThisProfileFromUserId(idUser);
+        Profile tableProfile = profileService.viewThisProfileFromUserId(idUser);
         post.setTimeOfPublication(new Date());
         post.setProfile(tableProfile);
         post.setOwnerPost(tableProfile.getCurrentUser().getEmail());
         postsDAO.createPost(post);
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
-        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
-        return "profilePage";
+        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
+        return "workWithProfile/profilePage";
     }
 
     @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
@@ -70,9 +68,9 @@ public class PostController {
                              @PathVariable int idPost) throws Exception {
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         postsDAO.deletePost(idPost);
-        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
+        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
-        return "profilePage";
+        return "workWithProfile/profilePage";
     }
 
     @RequestMapping(value = "/edit/{idPost}", method = RequestMethod.GET)
@@ -83,8 +81,8 @@ public class PostController {
         Posts post = postsDAO.retrievePostById(idPost);
         model.addAttribute("editPost", post);
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
-        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
-        return "profilePage";
+        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
+        return "workWithProfile/profilePage";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -93,9 +91,9 @@ public class PostController {
                                @ModelAttribute("editPost") Posts post){
         postsDAO.updatePost(post);
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        model.addAttribute("profile", profileDAO.viewThisProfileFromUserId(idUser));
+        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
         model.addAttribute("posts", postsDAO.retrievePostsByProfileId(idUser));
         model.addAttribute("editPost", new Posts());
-        return "profilePage";
+        return "workWithProfile/profilePage";
     }
 }

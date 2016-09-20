@@ -3,16 +3,14 @@ package com.application.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Vladislav on 02.09.2016.
  */
 @Entity
 @Table(name = "profile")
-public class Profile implements Serializable{
+public class Profile implements Serializable {
     @Id
     @Column(name = "idProfile")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +18,11 @@ public class Profile implements Serializable{
 
     @Basic
     @Column(name = "firstName", length = 45)
-    private String firstName = "";
+    private String firstName = "Profile";
 
     @Basic
     @Column(name = "lastName", length = 45)
-    private String lastName = "";
+    private String lastName = "New";
 
     @Basic
     @Column(name = "currentCity", length = 45)
@@ -60,6 +58,7 @@ public class Profile implements Serializable{
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
     public List<Posts> getPosts() {
         return posts;
     }
@@ -116,7 +115,7 @@ public class Profile implements Serializable{
         this.age = age;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         return currentUser;
     }
 
