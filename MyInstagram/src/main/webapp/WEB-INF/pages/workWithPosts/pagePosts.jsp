@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 <%--i18--%>
 <spring:message code="message.label.post" var="post"/>
 <spring:message code="message.label.author" var="author"/>
@@ -22,9 +22,13 @@
   <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-  <body>
-    <h1 style="margin-left: 50%">${post}</h1>
-    <div id="posts">
+  <body style="background: url('/resources/images/bg/left.jpg');
+  background-size: 90%; background-attachment: fixed; background-repeat: no-repeat">
+    <%--<h1 style="margin-left: 50%">${post}</h1>--%>
+    <div class="inline" id="menu">
+      <myTags:leftMenu/>
+    </div>
+    <div class="inline" id="mainColumn">
       <c:if test="${posts.size() > 0}">
         <c:forEach var="i" begin="0" end="${posts.size()-1}">
           <div>
@@ -46,11 +50,16 @@
           <br/>
         </c:forEach>
       </c:if>
-      <form action="/posts/newPost" method="get">
-        <button type="submit" >${newPost}</button>
-        <button type="button" onclick="history.back()">${back}</button>
-      </form>
+      <%--<form action="/posts/newPost" method="get">--%>
+        <%--<button type="submit" >${newPost}</button>--%>
+        <%--&lt;%&ndash;<button type="button" onclick="history.back()">${back}</button>&ndash;%&gt;--%>
+      <%--</form>--%>
     </div>
+  </body>
+</c:if>
+<c:if test="${sessionScope.idUser == null}">
+  <body background="/resources/images/error/error-page.jpg">
+    <div id="mes">Power to see this page, you not have</div>
   </body>
 </c:if>
 </html>

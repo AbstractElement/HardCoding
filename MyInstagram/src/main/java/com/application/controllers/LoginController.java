@@ -1,6 +1,5 @@
 package com.application.controllers;
 
-import com.application.dao.PostsDAO;
 import com.application.entity.Profile;
 import com.application.entity.User;
 import com.application.dto.UserDTO;

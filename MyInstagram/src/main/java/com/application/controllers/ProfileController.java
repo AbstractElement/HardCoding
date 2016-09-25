@@ -69,4 +69,14 @@ public class ProfileController {
         model.addAttribute("posts", posts);
         return "workWithProfile/profilePage";
     }
+
+    @RequestMapping(value = "myPage", method = RequestMethod.GET)
+    public String toMyPage(Model model,
+                           HttpSession session){
+        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+        Profile myProfile = profileService.viewThisProfileFromUserId(idUser);
+        model.addAttribute("profile", myProfile);
+        model.addAttribute("posts", postsService.retrievePostsByProfileId(myProfile.getIdProfile()));
+        return "workWithProfile/profilePage";
+    }
 }

@@ -51,7 +51,6 @@ public class PostsDAOImpl implements PostsDAO {
         try{
             Posts tablePost = retrievePostById(String.valueOf(posts.getIdPosts()));
             tablePost.setMessage(posts.getMessage());
-            tablePost.setTimeOfPublication(new Date());
             sessionFactory.getCurrentSession().update(tablePost);
         }
         catch (HibernateException ex){

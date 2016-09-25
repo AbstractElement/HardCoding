@@ -8,7 +8,7 @@
 }
 body{
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .form#signUp{
     margin: auto;
@@ -53,8 +53,23 @@ span#login{
 .inline{
     display: inline-table;
 }
-#myProfile{
-    width: 200px;
+.inline span{
+    font-size: 25px;
+}
+.inline button{
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: Times New Roman;
+}
+#menu{
+    width: 150px;
+    margin-left: 30%;
+    position: fixed;
+}
+.lMenu a{
+    font-size: 20px;
+    color: black;
 }
 .time{
     margin: auto;
@@ -68,14 +83,13 @@ span#login{
 }
 .button a{
     color: grey;
-
 }
-div#profilePage{
-    width: 50%;
-    margin: auto;
-}
-#posts{
-    margin-left: 35%;
+/*div#profilePage{*/
+    /*width: 50%;*/
+    /*margin: auto;*/
+/*}*/
+#mainColumn{
+    margin-left: 40%;
 }
 #success{
     margin-top: 200px;
@@ -84,9 +98,19 @@ div#profilePage{
     color: azure;
     position: absolute;
 }
-#success    button {
+#success button {
     border-radius: 10px;
     margin-left: 40%;
     font-size: 15px;
     margin-top: 10px;
+}
+#mes{
+    margin: 20%;
+    position: fixed;
+    font-size: 25px;
+    font-family: Times New Roman;
+    color: darkgray;
+}
+.forBG{
+    display: inline-block;
 }

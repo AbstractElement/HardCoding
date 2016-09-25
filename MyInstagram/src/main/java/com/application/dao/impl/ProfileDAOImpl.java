@@ -62,7 +62,9 @@ public class ProfileDAOImpl implements ProfileDAO {
     }
 
     @Override
-    public List viewAllProfiles() {
-        return sessionFactory.getCurrentSession().createCriteria(Profile.class).list();
+    public List<Profile> viewAllProfiles() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Profile");
+        return query.list();
+//        return sessionFactory.getCurrentSession().createCriteria(Profile.class).list();
     }
 }

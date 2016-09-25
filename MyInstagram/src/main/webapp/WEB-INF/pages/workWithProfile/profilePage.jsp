@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="leftMenu" tagdir="/WEB-INF/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vladislav
@@ -10,11 +11,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--i18--%>
-<spring:message code="message.label.menu" var="menu"/>
-<spring:message code="message.label.post" var="post"/>
-<spring:message code="message.label.people" var="people"/>
-<spring:message code="message.label.newPost" var="newPost"/>
-<spring:message code="message.label.exit" var="exit"/>
 <spring:message code="message.label.currentCity" var="currentCity"/>
 <spring:message code="message.label.phone" var="phone"/>
 <spring:message code="message.label.age" var="age"/>
@@ -34,17 +30,13 @@
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body>
-        <div id="profilePage">
-            <div class="inline" id="myProfile">
-                <h1>${menu}</h1>
-                <a href="/profile/posts">${post}</a><br/>
-                <a href="/profile/people">${people}</a><br/>
-                <a href="/posts/newPost">${newPost}</a><br/>
-                <a href="/">${exit}</a><br/>
+    <body style="background: url('/resources/images/bg/right.jpg'); background-size: 100%; background-attachment: fixed">
+        <%--<div id="profilePage">--%>
+            <div class="inline" id="menu">
+                <leftMenu:leftMenu/>
             </div>
-            <div class="inline">
-                <h2>${profile.lastName} ${profile.firstName}</h2>
+            <div class="inline" id="mainColumn">
+                <span>${profile.lastName} ${profile.firstName}</span>
                 <form:form action="/profile/edit" method="post" commandName="editProfile">
                     <hr>
                     <table>
@@ -85,23 +77,23 @@
                                 <tr>
                                     <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
                                 </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <form:form method="post" action="/posts/edit" commandName="editPost">
-                                                <c:choose>
-                                                    <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
-                                                        <form:hidden path="idPosts"/>
-                                                        <form:textarea path="message" cols="40" rows="5"/><br/>
-                                                        <button type="submit">${save}</button>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <textarea cols="40" rows="5" disabled>${posts.get(i).message}
-                                                        </textarea>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </form:form>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <form:form method="post" action="/posts/edit" commandName="editPost">
+                                            <c:choose>
+                                                <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
+                                                    <form:hidden path="idPosts"/>
+                                                    <form:textarea path="message" cols="40" rows="5"/><br/>
+                                                    <button class="" type="submit">${save}</button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <textarea cols="40" rows="5" disabled>${posts.get(i).message}
+                                                    </textarea>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </form:form>
+                                    </td>
+                                </tr>
                                 <c:if test="${sessionScope.idUser == profile.currentUser.id}">
                                     <tr class="button">
                                         <td colspan="2">
@@ -118,7 +110,12 @@
                     ${noPubl}
                 </c:if>
             </div>
-        </div>
+        <%--</div>--%>
+    </body>
+</c:if>
+<c:if test="${sessionScope.idUser == null}">
+    <body background="/resources/images/error/error-page.jpg">
+        <div id="mes">Power to see this page, you not have</div>
     </body>
 </c:if>
 </html>

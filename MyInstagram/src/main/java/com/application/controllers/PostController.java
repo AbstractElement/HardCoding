@@ -1,7 +1,5 @@
 package com.application.controllers;
 
-import com.application.dao.PostsDAO;
-import com.application.dao.ProfileDAO;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
 import com.application.service.postsService.PostsService;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 

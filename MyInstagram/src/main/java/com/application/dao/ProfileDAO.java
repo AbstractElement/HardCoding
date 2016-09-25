@@ -12,5 +12,5 @@ public interface ProfileDAO {
     public void createProfile(User user, Profile profile);
     public void updateProfile(Profile profile, int idUser);
     public Profile viewThisProfileFromUserId(int idProfile);
-    public List viewAllProfiles();
+    public List<Profile> viewAllProfiles();
 }
