@@ -23,7 +23,7 @@
 </head>
 <c:if test="${sessionScope.idUser != null}">
   <body style="background: url('/resources/images/bg/left.jpg');
-  background-size: 90%; background-attachment: fixed; background-repeat: no-repeat">
+  background-size: cover; background-attachment: fixed; background-repeat: no-repeat">
     <%--<h1 style="margin-left: 50%">${post}</h1>--%>
     <div class="inline" id="menu">
       <myTags:leftMenu/>

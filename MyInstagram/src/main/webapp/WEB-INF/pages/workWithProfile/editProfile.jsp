@@ -40,7 +40,8 @@
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body>
+    <body style="background: url('/resources/images/bg/soldier-left.jpg');
+    background-size: cover; background-attachment: fixed; background-repeat: no-repeat">
     <div class="inline" id="menu">
         <myTags:leftMenu/>
     </div>

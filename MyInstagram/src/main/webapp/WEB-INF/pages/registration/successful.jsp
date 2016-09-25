@@ -20,7 +20,7 @@
     <title>StarExpress</title>
     <link rel="stylesheet" href="/resources/styles/my_styles.css" type="text/css">
 </head>
-<body background="/resources/images/bg/posts-page.jpg">
+<body background="/resources/images/bg/posts-page.jpg" style="background-size: cover">
     <div>
         <form id="success" method="get" action="/">
             <span>${success}<br/></span>

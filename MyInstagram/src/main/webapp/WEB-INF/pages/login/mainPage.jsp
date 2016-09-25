@@ -14,7 +14,7 @@
 	</title>
 	<link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
-<body style="background: url('/resources/images/bg/r2d2-bg-mainpage.jpg')">
+<body style="background: url('/resources/images/bg/r2d2-bg-mainpage.jpg'); background-size: cover">
 	<div class="form" id="mainPage">
 		<span style="float: right; margin-top: 220px; margin-right: 10px;">
 		<a href="?lang=en"><img src="/resources/images/flags/us.png"></a>

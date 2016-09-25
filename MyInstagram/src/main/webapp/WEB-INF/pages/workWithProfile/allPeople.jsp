@@ -20,7 +20,8 @@
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-  <body style="background: url('/resources/images/bg/darth-right.jpg'); background-size: 100%; background-attachment: fixed">
+  <body style="background: url('/resources/images/bg/darth-right.jpg');
+  background-size: cover; background-attachment: fixed; background-repeat: no-repeat">
     <div class="inline" id="menu">
       <myTags:leftMenu/>
     </div>

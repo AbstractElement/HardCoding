@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/resources/styles/my_styles.css" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body style="background: url('/resources/images/bg/down-left.jpg'); background-size: 100%; background-attachment: fixed">
+    <body style="background: url('/resources/images/bg/down-left.jpg'); background-size: cover; background-attachment: fixed">
     <div class="inline" id="menu">
         <myTags:leftMenu/>
     </div>

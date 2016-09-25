@@ -20,7 +20,7 @@
     <title>StarExpress</title>
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
-<body style="background: url('/resources/images/bg/stardeath.jpg')">
+<body style="background: url('/resources/images/bg/stardeath.jpg'); background-size: cover">
   <div class="form" id="signUp">
     <form:form method="post" action="/account/registration" commandName="userDTO">
       <form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
