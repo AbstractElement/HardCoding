@@ -48,7 +48,7 @@ public class Profile implements Serializable {
     @JoinColumn(name = "idUser")
     private User currentUser;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "profile")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "profile")
     private List<Posts> posts = new ArrayList<Posts>();
 
     public String getAvatar() {

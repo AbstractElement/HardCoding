@@ -24,7 +24,7 @@ public class Posts {
     @Column(name = "ownerPost")
     private String ownerPost;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idProfile")
     private Profile profile;
 

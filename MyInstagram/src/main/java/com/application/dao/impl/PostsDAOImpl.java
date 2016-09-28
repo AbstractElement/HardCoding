@@ -61,7 +61,9 @@ public class PostsDAOImpl implements PostsDAO {
     @Override
     public void deletePost(int id) throws Exception {
         try{
-            sessionFactory.getCurrentSession().delete(retrievePostById(String.valueOf(id)));
+            Posts post = retrievePostById(String.valueOf(id));
+            Posts mergedPost = (Posts) sessionFactory.getCurrentSession().merge(post);
+            sessionFactory.getCurrentSession().delete(mergedPost);
         }catch (HibernateException ex){
             ex.printStackTrace();
         }

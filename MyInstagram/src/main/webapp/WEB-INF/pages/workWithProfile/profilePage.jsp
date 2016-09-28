@@ -57,6 +57,7 @@
                             <td>${phone}: ${profile.phoneNumber}</td>
                         </tr>
                         <tr>
+
                             <td>${email}: ${profile.currentUser.email}</td>
                         </tr>
                     </table>
