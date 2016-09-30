@@ -6,10 +6,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created by Vladislav on 01.09.2016.
- */
-
 @Component
 public class UserValidator implements Validator {
     @Override

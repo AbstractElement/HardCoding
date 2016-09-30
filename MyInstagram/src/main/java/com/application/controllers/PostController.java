@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
-/**
- * Created by Vladislav on 11.09.2016.
- */
-
 @Controller
 @RequestMapping(value = "/posts")
 public class PostController {
@@ -53,7 +49,7 @@ public class PostController {
         Profile tableProfile = profileService.viewThisProfileFromUserId(idUser);
         post.setTimeOfPublication(new Date());
         post.setProfile(tableProfile);
-        post.setOwnerPost(tableProfile.getCurrentUser().getEmail());
+        post.setOwnerPost(tableProfile.getLastName() + " " + tableProfile.getFirstName());
         postsService.createPost(post);
         model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));

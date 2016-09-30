@@ -3,10 +3,6 @@ package com.application.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by Vladislav on 09.09.2016.
- */
-
 @Entity
 @Table(name = "posts")
 public class Posts {

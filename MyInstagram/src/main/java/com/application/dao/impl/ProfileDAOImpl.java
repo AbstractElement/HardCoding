@@ -12,10 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by Vladislav on 02.09.2016.
- */
-
 @Repository
 @Transactional
 public class ProfileDAOImpl implements ProfileDAO {

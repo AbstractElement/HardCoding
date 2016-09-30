@@ -5,9 +5,6 @@ import com.application.entity.User;
 
 import java.util.List;
 
-/**
- * Created by Vladislav on 06.09.2016.
- */
 public interface ProfileDAO {
     public void createProfile(User user, Profile profile);
     public void updateProfile(Profile profile, int idUser);

@@ -3,10 +3,6 @@ package com.application.service.protect;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Vladislav on 19.09.2016.
- */
-
 @Component
 public class ProtectedPassword {
     private String protect(String pass){

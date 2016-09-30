@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * Created by Vladislav on 05.09.2016.
- */
-
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {

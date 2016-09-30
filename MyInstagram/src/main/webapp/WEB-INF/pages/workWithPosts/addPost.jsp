@@ -3,13 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Vladislav
-  Date: 09.09.2016
-  Time: 22:31
-  To change this template use File | Settings | File Templates.
---%>
+
 <%--i18--%>
 <spring:message code="message.label.submit" var="submit"/>
 <spring:message code="message.label.back" var="back"/>

@@ -17,9 +17,9 @@
 <body style="background: url('/resources/images/bg/r2d2-bg-mainpage.jpg'); background-size: cover">
 	<div class="form" id="mainPage">
 		<span style="float: right; margin-top: 220px; margin-right: 10px;">
-		<a href="?lang=en"><img src="/resources/images/flags/us.png"></a>
-		<a href="?lang=ru"><img src="/resources/images/flags/ru.png"></a>
-	</span>
+			<a href="?lang=en"><img src="/resources/images/flags/us.png"></a>
+			<a href="?lang=ru"><img src="/resources/images/flags/ru.png"></a>
+		</span>
 		<form:form method="post" commandName="userDTO">
 			<form:input path="email" type="email" placeholder="E-mail" size="30" cssClass="field"/><br/>
 			<span id="login">

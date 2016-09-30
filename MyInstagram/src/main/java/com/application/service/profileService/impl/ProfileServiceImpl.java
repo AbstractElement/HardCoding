@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Created by Vladislav on 20.09.2016.
- */
-
 @Component
 public class ProfileServiceImpl implements ProfileService{
     @Autowired

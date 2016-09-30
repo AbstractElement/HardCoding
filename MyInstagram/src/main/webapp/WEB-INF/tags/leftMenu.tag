@@ -1,6 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-
 <spring:message code="message.label.menu" var="menu"/>
 <spring:message code="message.label.post" var="post"/>
 <spring:message code="message.label.people" var="people"/>
@@ -27,4 +26,12 @@
     <tr>
         <td><a href="/">${exit}</a><br/></td>
     </tr>
+    <%--<tr>--%>
+        <%--<td>--%>
+           <%--<span style="float: right; margin-right: 10px;">--%>
+                <%--<a href="?lang=en"><img src="/resources/images/flags/us.png"></a>--%>
+                <%--<a href="?lang=ru"><img src="/resources/images/flags/ru.png"></a>--%>
+		    <%--</span>--%>
+        <%--</td>--%>
+    <%--</tr>--%>
 </table>

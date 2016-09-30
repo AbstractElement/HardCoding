@@ -6,10 +6,6 @@ import com.application.service.protect.ProtectedPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Vladislav on 10.09.2016.
- */
-
 @Component
 public class ConvertUserDTOInUser {
     @Autowired

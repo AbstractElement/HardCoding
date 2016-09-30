@@ -5,9 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Vladislav on 02.09.2016.
- */
 @Entity
 @Table(name = "profile")
 public class Profile implements Serializable {

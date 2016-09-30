@@ -11,10 +11,6 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Vladislav on 09.09.2016.
- */
-
 @Repository
 @Transactional
 public class PostsDAOImpl implements PostsDAO {

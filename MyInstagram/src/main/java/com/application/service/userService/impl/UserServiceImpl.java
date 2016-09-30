@@ -8,10 +8,6 @@ import com.application.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Vladislav on 20.09.2016.
- */
-
 @Component
 public class UserServiceImpl implements UserService {
     @Autowired

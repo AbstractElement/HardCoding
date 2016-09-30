@@ -12,10 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-/**
- * Created by Vladislav on 01.09.2016.
- */
-
 @Repository
 @Transactional
 public class UserDAOImpl implements UserDAO {

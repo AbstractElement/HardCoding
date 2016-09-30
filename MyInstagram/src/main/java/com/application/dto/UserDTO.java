@@ -1,8 +1,5 @@
 package com.application.dto;
 
-/**
- * Created by Vladislav on 01.09.2016.
- */
 public class UserDTO {
     private String pass;
     private String email;
