@@ -67,7 +67,7 @@
                                 <img style="width: 70px" src="/resources/images/avatar/${profile.avatar}">
                             </td>
                             <td>
-                                ${author}:${posts.get(i).ownerPost}
+                                ${author}:${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}
                             </td>
                         </tr>
                         <tr>

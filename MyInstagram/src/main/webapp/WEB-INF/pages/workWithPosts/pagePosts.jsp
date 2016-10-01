@@ -32,23 +32,25 @@
                 <td rowspan="2">
                   <img style="width: 70px" src="/resources/images/avatar/${posts.get(i).profile.avatar}">
                 </td>
-                <td>${author}: ${posts.get(i).ownerPost}</td>
+                <td>${author}:
+                  <a href="/profile/viewProfile/${posts.get(i).profile.idProfile}">
+                    ${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
               </tr>
-              <tr><td colspan="2">
+              <tr>
+                <td colspan="2">
                     <textarea cols="40" rows="5" disabled>${posts.get(i).message}</textarea>
-              </td></tr>
+                </td>
+              </tr>
             </table>
           </div>
           <br/>
         </c:forEach>
       </c:if>
-      <%--<form action="/posts/newPost" method="get">--%>
-        <%--<button type="submit" >${newPost}</button>--%>
-        <%--&lt;%&ndash;<button type="button" onclick="history.back()">${back}</button>&ndash;%&gt;--%>
-      <%--</form>--%>
     </div>
   </body>
 </c:if>

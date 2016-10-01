@@ -65,7 +65,6 @@
             </table>
             <myTags:picture/>
             <button type="submit">${submit}</button>
-               <%--<button type="button" onclick="history.back()">${back}</button>--%>
         </div>
     </form:form>
     </body>
