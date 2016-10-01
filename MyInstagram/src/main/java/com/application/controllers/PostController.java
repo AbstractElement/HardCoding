@@ -41,7 +41,7 @@ public class PostController {
                               @ModelAttribute("post") Posts post,
                               BindingResult result) throws Exception {
         postsValidator.validate(post, result);
-        if (result.hasErrors()) {
+        if (result.hasErrors() || post.getMessage().equals("")) {
             model.addAttribute("post", post);
             return "workWithPosts/addPost";
         }

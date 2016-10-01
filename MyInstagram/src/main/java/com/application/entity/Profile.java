@@ -15,11 +15,11 @@ public class Profile implements Serializable {
 
     @Basic
     @Column(name = "firstName", length = 45)
-    private String firstName = "Profile";
+    private String firstName = "";
 
     @Basic
     @Column(name = "lastName", length = 45)
-    private String lastName = "New";
+    private String lastName = "";
 
     @Basic
     @Column(name = "currentCity", length = 45)

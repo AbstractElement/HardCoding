@@ -39,6 +39,8 @@
         <myTags:leftMenu/>
     </div>
     <form:form action="/profile/saveEdit" method="post" commandName="editProfile">
+        <form:input path="idProfile"/>
+        <%--<form:input path="currentUser"/>--%>
         <div class="inline" id="mainColumn">
             <table>
                 <tr>

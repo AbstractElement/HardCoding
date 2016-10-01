@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="/resources/styles/my_styles.css" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body style="background: url('/resources/images/bg/down-left.jpg'); background-size: cover; background-attachment: fixed">
+    <body style="background: url('/resources/images/bg/down-left.jpg');
+        background-size: cover; background-attachment: fixed">
     <div class="inline" id="menu">
         <myTags:leftMenu/>
     </div>
     <div class="inline" id="mainColumn">
         <form:form action="/posts/newPost" method="post" commandName="post">
           <form:textarea path="message" cols="40" rows="5"/><br/>
-            <form:errors path="message"/>
+            <form:errors path="message"/><br/>
           <button type="submit">${submit}</button>
           <%--<button type="button" onclick="history.back()">${back}</button>--%>
         </form:form>
