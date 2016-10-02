@@ -17,20 +17,9 @@ public class Posts {
     @Column(name = "timeOfPublication")
     private Date timeOfPublication;
 
-//    @Column(name = "ownerPost")
-//    private String ownerPost;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idProfile")
     private Profile profile;
-
-//    public String getOwnerPost() {
-//        return ownerPost;
-//    }
-//
-//    public void setOwnerPost(String ownerPost) {
-//        this.ownerPost = ownerPost;
-//    }
 
     public Profile getProfile() {
         return profile;

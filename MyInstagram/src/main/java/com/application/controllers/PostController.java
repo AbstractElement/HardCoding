@@ -49,7 +49,6 @@ public class PostController {
         Profile tableProfile = profileService.viewThisProfileFromUserId(idUser);
         post.setTimeOfPublication(new Date());
         post.setProfile(tableProfile);
-//        post.setOwnerPost(tableProfile.getLastName() + " " + tableProfile.getFirstName());
         postsService.createPost(post);
         model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
         model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
