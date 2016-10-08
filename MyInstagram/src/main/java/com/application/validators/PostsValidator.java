@@ -15,6 +15,8 @@ public class PostsValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Posts post = (Posts) o;
+//        if(post.getProfile().getFirstName() == null || post.getProfile().getLastName() == null)
+//            errors.rejectValue("message", "message.error.emptyName");
         if (post.getMessage().equals(""))
             errors.rejectValue("message", "message.error.emptyMessage");
         if (post.getMessage().length() > 200)

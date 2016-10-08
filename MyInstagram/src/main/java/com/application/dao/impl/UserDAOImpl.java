@@ -75,4 +75,10 @@ public class UserDAOImpl implements UserDAO {
             return false;
         }
     }
+
+    public User retrieveUserById(int id){
+        Query q = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
+        q.setInteger("id", id);
+        return (User) q.uniqueResult();
+    }
 }

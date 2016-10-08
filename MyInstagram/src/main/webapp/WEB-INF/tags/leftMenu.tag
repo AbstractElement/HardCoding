@@ -1,5 +1,4 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <spring:message code="message.label.menu" var="menu"/>
 <spring:message code="message.label.post" var="post"/>
 <spring:message code="message.label.people" var="people"/>
@@ -21,7 +20,9 @@
         <td><a href="/profile/people">${people}</a></td>
     </tr>
     <tr>
-        <td><a href="/posts/newPost">${newPost}</a></td>
+        <td>
+            <a href="/posts/newPost">${newPost}</a>
+        </td>
     </tr>
     <tr>
         <td><a href="/">${exit}</a><br/></td>

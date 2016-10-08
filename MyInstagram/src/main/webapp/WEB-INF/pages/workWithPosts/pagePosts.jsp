@@ -34,7 +34,8 @@
                 </td>
                 <td>${author}:
                   <a href="/profile/viewProfile/${posts.get(i).profile.idProfile}">
-                    ${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}
+                    ${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}<br/>
+                      (${posts.get(i).profile.currentUser.email})
                   </a>
                 </td>
               </tr>
@@ -42,7 +43,7 @@
                 <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
               </tr>
               <tr>
-                <td colspan="2">
+                <td colspan="3">
                     <textarea cols="40" rows="5" disabled>${posts.get(i).message}</textarea>
                 </td>
               </tr>

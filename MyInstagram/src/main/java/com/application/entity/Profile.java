@@ -48,6 +48,17 @@ public class Profile implements Serializable {
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "profile")
     private List<Posts> posts = new ArrayList<Posts>();
 
+//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "ownerLike")
+//    private List<Likes> likes = new ArrayList<Likes>();
+//
+//    public List<Likes> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Likes> likes) {
+//        this.likes = likes;
+//    }
+
     public String getAvatar() {
         return avatar;
     }

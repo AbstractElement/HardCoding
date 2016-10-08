@@ -1,7 +1,9 @@
 package com.application.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -20,6 +22,17 @@ public class Posts {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idProfile")
     private Profile profile;
+
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "idPosts")
+//    private List<Likes> likes = new ArrayList<Likes>();
+//
+//    public List<Likes> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Likes> likes) {
+//        this.likes = likes;
+//    }
 
     public Profile getProfile() {
         return profile;

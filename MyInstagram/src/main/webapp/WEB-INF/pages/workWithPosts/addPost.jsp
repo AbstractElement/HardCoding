@@ -24,8 +24,7 @@
         <form:form action="/posts/newPost" method="post" commandName="post">
           <form:textarea path="message" cols="40" rows="5"/><br/>
             <form:errors path="message"/><br/>
-          <button type="submit">${submit}</button>
-          <%--<button type="button" onclick="history.back()">${back}</button>--%>
+          <button type="submit" onclick="">${submit}</button>
         </form:form>
     </div>
     </body>

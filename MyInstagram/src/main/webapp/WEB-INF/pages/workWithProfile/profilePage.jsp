@@ -24,10 +24,17 @@
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body style="background: url('/resources/images/bg/right.jpg');
-        background-size: cover; background-attachment: fixed; background-repeat: no-repeat">
+    <body style="background: url('/resources/images/bg/right.jpg'); background-position-y: 100px;
+        background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
         <div class="inline" id="menu">
-            <leftMenu:leftMenu/>
+            <c:if test="${profile.firstName.equals('') || profile.lastName.equals('')}">
+                <script>
+                    alert("Для того, чтобы полноценно использовать возможности страницы, заполните имя и фамилию!\n")
+                </script>
+            </c:if>
+            <c:if test="${!profile.firstName.equals('') || !profile.lastName.equals('')}">
+                <leftMenu:leftMenu/>
+            </c:if>
         </div>
         <div class="inline" id="mainColumn">
             <span>${profile.lastName} ${profile.firstName}</span>
@@ -67,14 +74,20 @@
                                 <img style="width: 70px" src="/resources/images/avatar/${profile.avatar}">
                             </td>
                             <td>
-                                ${author}:${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}
+                                ${author}:${posts.get(i).profile.lastName} ${posts.get(i).profile.firstName}<br/>
+                                (${posts.get(i).profile.currentUser.email})
                             </td>
                         </tr>
                         <tr>
                             <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
+                            <%--<td>--%>
+                                <%--<a href="/likes/addLike/${posts.get(i).idPosts}/${profile.idProfile}">--%>
+                                    <%--<img style="width: 30%" src="/resources/images/like.png"></a>--%>
+                                <%--${posts.get(i).likes.size()}--%>
+                            <%--</td>--%>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="3">
                                 <form:form method="post" action="/posts/edit" commandName="editPost">
                                     <c:choose>
                                         <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
@@ -95,9 +108,6 @@
                                 <td width="100px">
                                     <a href="/posts/edit/${posts.get(i).idPosts}">${edit}</a>
                                     <a href="/posts/delete/${posts.get(i).idPosts}">${del}</a>
-                                </td>
-                                <td style="float: right">
-                                    like
                                 </td>
                             </tr>
                         </c:if>
