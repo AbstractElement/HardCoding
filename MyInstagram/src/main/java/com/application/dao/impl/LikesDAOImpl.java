@@ -38,9 +38,14 @@ public class LikesDAOImpl implements LikesDAO {
         return query.list();
     }
 
-    public void deleteLike(int id) throws Exception {
+    public void deleteLike(Likes like) throws Exception {
         try{
-            sessionFactory.getCurrentSession().delete(id);
+            Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPosts" +
+                    " and ownerLike = :ownerLike");
+            query.setInteger("idPosts", like.getIdPosts().getIdPosts());
+            query.setInteger("ownerLike", like.getOwnerLike().getIdProfile());
+            Likes existLike = (Likes) query.uniqueResult();
+            sessionFactory.getCurrentSession().delete(existLike);
         }catch (HibernateException ex){
             ex.printStackTrace();
         }
@@ -50,5 +55,23 @@ public class LikesDAOImpl implements LikesDAO {
         Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPost");
         query.setString("idPost", idPost);
         return query.list();
+    }
+
+    @Override
+    public boolean thisLikeIsExist(Likes like) {
+        try{
+            Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPosts" +
+                    " and ownerLike = :ownerLike");
+            query.setInteger("idPosts", like.getIdPosts().getIdPosts());
+            query.setInteger("ownerLike", like.getOwnerLike().getIdProfile());
+            Likes existLike = (Likes) query.uniqueResult();
+            if (existLike != null)
+                return true;
+            else
+                return false;
+        }
+        catch (HibernateException ex){
+            return false;
+        }
     }
 }

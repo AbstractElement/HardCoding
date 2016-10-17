@@ -29,8 +29,8 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public void deleteLike(int id) throws Exception {
-
+    public void deleteLike(Likes like) throws Exception {
+        likesDAO.deleteLike(like);
     }
 
     @Override
@@ -38,4 +38,8 @@ public class LikeServiceImpl implements LikeService {
         return likesDAO.retrieveLikeByPostId(idPost);
     }
 
+    @Override
+    public boolean thisLikeIsExist(Likes like) {
+        return likesDAO.thisLikeIsExist(like);
+    }
 }

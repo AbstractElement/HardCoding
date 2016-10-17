@@ -38,7 +38,10 @@ public class LikesController {
         Likes newLike = new Likes();
         newLike.setIdPosts(post);
         newLike.setOwnerLike(profileService.viewThisProfileFromUserId(idUser));
-        likeService.createLike(newLike);
+        if (likeService.thisLikeIsExist(newLike))
+            likeService.deleteLike(newLike);
+        else
+            likeService.createLike(newLike);
         model.addAttribute("profile", profile);
         model.addAttribute("posts", posts);
         return "workWithProfile/profilePage";
