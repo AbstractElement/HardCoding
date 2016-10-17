@@ -1,6 +1,7 @@
 package com.application.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "likes")
@@ -17,6 +18,17 @@ public class Likes {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idPost")
     private Posts idPosts;
+
+    @Column(name = "timeThisLike")
+    private Date timeThisLike;
+
+    public Date getTimeThisLike() {
+        return timeThisLike;
+    }
+
+    public void setTimeThisLike(Date timeThisLike) {
+        this.timeThisLike = timeThisLike;
+    }
 
     public Profile getOwnerLike() {
         return ownerLike;

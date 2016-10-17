@@ -29,12 +29,26 @@ public class PostController {
     @Autowired
     private PostsService postsService;
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
     public String toNewPost(Model model){
         model.addAttribute("post", new Posts());
         return "workWithPosts/addPost";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param post
+     * @param result
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/newPost", method = RequestMethod.POST)
     public String saveNewPost(Model model,
                               HttpSession session,
@@ -55,6 +69,14 @@ public class PostController {
         return "workWithProfile/profilePage";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param idPost
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
     public String deletePost(Model model,
                              HttpSession session,
@@ -66,6 +88,14 @@ public class PostController {
         return "workWithProfile/profilePage";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param idPost
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/edit/{idPost}", method = RequestMethod.GET)
     public String editPost(Model model,
                            HttpSession session,
@@ -78,6 +108,13 @@ public class PostController {
         return "workWithProfile/profilePage";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param post
+     * @return
+     */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String saveEditPost(Model model,
                                HttpSession session,

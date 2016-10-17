@@ -23,12 +23,25 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
+    /**
+     *
+     * @param modelMap
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "posts", method = RequestMethod.GET)
     public String toProfilePosts(ModelMap modelMap) throws Exception {
         modelMap.addAttribute("posts", postsService.retrievePosts());
         return "workWithPosts/pagePosts";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param profile
+     * @return
+     */
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String toEdit(Model model,
                          HttpSession session,
@@ -38,6 +51,14 @@ public class ProfileController {
         return "workWithProfile/editProfile";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @param profile
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "saveEdit",method = RequestMethod.POST)
     public String saveEdit(Model model,
                            HttpSession session,
@@ -49,6 +70,11 @@ public class ProfileController {
         return "workWithProfile/profilePage";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "people", method = RequestMethod.GET)
     public String showPeople(Model model){
         List<Profile> profileList = profileService.viewAllProfiles();
@@ -56,6 +82,12 @@ public class ProfileController {
         return "workWithProfile/allPeople";
     }
 
+    /**
+     *
+     * @param model
+     * @param idProfile
+     * @return
+     */
     @RequestMapping(value = "viewProfile/{idProfile}", method = RequestMethod.GET)
     public String viewProfilePage(Model model,
                                   @PathVariable("idProfile") int idProfile){
@@ -66,6 +98,12 @@ public class ProfileController {
         return "workWithProfile/profilePage";
     }
 
+    /**
+     *
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "myPage", method = RequestMethod.GET)
     public String toMyPage(Model model,
                            HttpSession session){

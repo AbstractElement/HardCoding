@@ -29,6 +29,14 @@ public class LoginController {
 	@Autowired
 	private PostsService postsService;
 
+	/**
+	 *
+	 * Функция первоначального запуска приложения, которая перенаправляет на страницу авторизации.
+	 *
+	 * @param modelMap - передает пустой объект пользователя для авторизации
+	 * @param session - обнуляет текущую сессию
+	 * @return - возвращает на страницу авторизации
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String toMainPage(ModelMap modelMap,
 							 HttpSession session) {
@@ -37,6 +45,13 @@ public class LoginController {
 		return "login/mainPage";
 	}
 
+	/**
+	 *
+	 *
+	 * @param modelMap
+	 * @param userDTO
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "signup")
 	public String toSignUp(ModelMap modelMap,
 						   @ModelAttribute("userDTO") UserDTO userDTO) {
@@ -44,6 +59,15 @@ public class LoginController {
 		return "registration/signUp";
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @param session
+	 * @param userDTO
+	 * @param result
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "account/login", method = RequestMethod.POST)
 	public String toMainPage(ModelMap modelMap,
 							 HttpSession session,
@@ -63,6 +87,14 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @param userDTO
+	 * @param result
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "account/registration", method = RequestMethod.POST)
 	public String saveSignUp(ModelMap modelMap,
 							 @ModelAttribute(value = "userDTO")UserDTO userDTO,
