@@ -2,8 +2,6 @@ package com.application.dao.impl;
 
 import com.application.dao.LikesDAO;
 import com.application.entity.Likes;
-import com.application.entity.Posts;
-import com.application.entity.Profile;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

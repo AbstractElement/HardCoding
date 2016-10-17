@@ -2,17 +2,11 @@ package com.application.service.likeService.impl;
 
 import com.application.dao.LikesDAO;
 import com.application.entity.Likes;
-import com.application.entity.Posts;
-import com.application.entity.Profile;
 import com.application.service.likeService.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
-/**
-* Created by Vladislav on 02.10.2016.
-*/
 
 @Component
 public class LikeServiceImpl implements LikeService {

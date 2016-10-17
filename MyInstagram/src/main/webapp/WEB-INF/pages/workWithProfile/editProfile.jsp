@@ -26,21 +26,21 @@
 <c:if test="${sessionScope.idUser != null}">
     <body style="background: url('/resources/images/bg/soldier-left.jpg');
     background-size: cover; background-attachment: fixed; background-repeat: no-repeat">
-    <div class="inline" id="menu">
-        <myTags:leftMenu/>
-    </div>
+    <%--<div class="inline" id="menu">--%>
+        <%--<myTags:leftMenu/>--%>
+    <%--</div>--%>
     <form:form action="/profile/saveEdit" method="post" commandName="editProfile">
         <%--<form:input path="idProfile"/>--%>
         <%--<form:input path="currentUser"/>--%>
-        <div class="inline" id="mainColumn">
+        <div class="inline" id="mainColumn" style="margin-left: 35%">
             <table>
                 <tr>
                     <td>${firstName}:</td>
-                    <td><form:input path="firstName" size="30" placeholder = "First Name"/></td>
+                    <td><form:input path="firstName" size="30" required = "true" placeholder = "First Name"/></td>
                 </tr>
                 <tr>
                     <td>${secondName}:</td>
-                    <td><form:input path="lastName" size="30" placeholder = "Last Name"/></td>
+                    <td><form:input path="lastName" size="30" required = "true" placeholder = "Last Name"/></td>
                 </tr>
                 <tr>
                     <td>${currentCity}:</td>

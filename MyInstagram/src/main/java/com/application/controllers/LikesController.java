@@ -1,15 +1,11 @@
 package com.application.controllers;
 
-import com.application.dao.UserDAO;
-import com.application.dao.impl.LikesDAOImpl;
-import com.application.dao.impl.UserDAOImpl;
 import com.application.entity.Likes;
 import com.application.entity.Posts;
 import com.application.entity.Profile;
 import com.application.service.likeService.LikeService;
 import com.application.service.postsService.PostsService;
 import com.application.service.profileService.ProfileService;
-import com.application.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

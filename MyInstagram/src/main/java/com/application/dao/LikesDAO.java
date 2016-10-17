@@ -1,8 +1,6 @@
 package com.application.dao;
 
 import com.application.entity.Likes;
-import com.application.entity.Posts;
-import com.application.entity.Profile;
 
 import java.util.List;
 
