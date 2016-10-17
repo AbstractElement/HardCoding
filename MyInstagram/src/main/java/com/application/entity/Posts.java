@@ -23,16 +23,16 @@ public class Posts {
     @JoinColumn(name = "idProfile")
     private Profile profile;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "idPosts")
-//    private List<Likes> likes = new ArrayList<Likes>();
-//
-//    public List<Likes> getLikes() {
-//        return likes;
-//    }
-//
-//    public void setLikes(List<Likes> likes) {
-//        this.likes = likes;
-//    }
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "idPosts")
+    private List<Likes> likes = new ArrayList<Likes>();
+
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likes) {
+        this.likes = likes;
+    }
 
     public Profile getProfile() {
         return profile;

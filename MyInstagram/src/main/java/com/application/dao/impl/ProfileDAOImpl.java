@@ -62,4 +62,16 @@ public class ProfileDAOImpl implements ProfileDAO {
         Query query = sessionFactory.getCurrentSession().createQuery("from Profile");
         return query.list();
     }
+
+    @Override
+    public Profile retrieveProfile(int idProfile) {
+        try{
+            Query query = sessionFactory.getCurrentSession().createQuery("from Profile where idProfile = :idProfile");
+            query.setInteger("idProfile", idProfile);
+            return (Profile) query.uniqueResult();
+        }catch (HibernateException ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
 }

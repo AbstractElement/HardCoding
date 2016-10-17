@@ -33,4 +33,9 @@ public class ProfileServiceImpl implements ProfileService{
     public List<Profile> viewAllProfiles() {
         return profileDAO.viewAllProfiles();
     }
+
+    @Override
+    public Profile retrieveProfile(int idProfile) {
+        return profileDAO.retrieveProfile(idProfile);
+    }
 }

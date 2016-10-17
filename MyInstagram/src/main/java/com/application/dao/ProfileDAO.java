@@ -8,6 +8,7 @@ import java.util.List;
 public interface ProfileDAO {
     public void createProfile(User user, Profile profile);
     public void updateProfile(Profile profile, int idUser);
-    public Profile viewThisProfileFromUserId(int idProfile);
+    public Profile viewThisProfileFromUserId(int idUser);
     public List<Profile> viewAllProfiles();
+    public Profile retrieveProfile(int idProfile);
 }

@@ -10,4 +10,5 @@ public interface ProfileService {
     public void updateProfile(Profile profile, int idUser);
     public Profile viewThisProfileFromUserId(int idProfile);
     public List<Profile> viewAllProfiles();
+    public Profile retrieveProfile(int idProfile);
 }

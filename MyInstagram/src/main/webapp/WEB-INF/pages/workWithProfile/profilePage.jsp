@@ -80,11 +80,11 @@
                         </tr>
                         <tr>
                             <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
-                            <%--<td>--%>
-                                <%--<a href="/likes/addLike/${posts.get(i).idPosts}/${profile.idProfile}">--%>
-                                    <%--<img style="width: 30%" src="/resources/images/like.png"></a>--%>
-                                <%--${posts.get(i).likes.size()}--%>
-                            <%--</td>--%>
+                            <td>
+                                <a href="/likes/addLike/${posts.get(i).idPosts}/${profile.idProfile}">
+                                    <img style="width: 30%" src="/resources/images/like.png"></a>
+                                ${posts.get(i).likes.size()}
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3">
