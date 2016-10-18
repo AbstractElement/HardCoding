@@ -31,8 +31,10 @@ public class PostController {
 
     /**
      *
-     * @param model
-     * @return
+     *  Функция, которая перенаправляет на страницу создания новой публикации.
+     *
+     * @param model - передает пустой объект публикации, для заполнения на странице
+     * @return - возвращет на страницу созания новой пубикации
      */
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
     public String toNewPost(Model model){
@@ -42,10 +44,16 @@ public class PostController {
 
     /**
      *
-     * @param model
-     * @param session
-     * @param post
-     * @param result
+     *  Функция, которая добавляет новую публикацию в таблицу публикаций БД и, при корректном вводе,
+     *  перенаправляет на страницу профиля.
+     *  Перед добавление публикации в БД она проходит валидацию и при обнаружении ошибок возвращает на страницу
+     *  создания новой публикации.
+     *  В случае корректного ввода, новой публикации присваивается текущее время и номер текущего профиля.
+     *
+     * @param model - передает все публикации текущего пользователя и информацию о теекущем профиле
+     * @param session - возвращает из сессии номер текущего пользователя
+     * @param post - возвращает объект новой публикации, содержащий сообщение
+     * @param result - возможные ошибки
      * @return
      * @throws Exception
      */
@@ -71,10 +79,12 @@ public class PostController {
 
     /**
      *
-     * @param model
-     * @param session
-     * @param idPost
-     * @return
+     *  Функция удаления публикации. Перенаправляет на страницу профиля.
+     *
+     * @param model - передает информацию о профиле и все его публикации
+     * @param session - возвращает из сессии номер текущего пользователя
+     * @param idPost - возвращает со страницы номер публикации, которую необходимо удалить
+     * @return - возвращает обратно на страницу профиля
      * @throws Exception
      */
     @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
@@ -90,10 +100,12 @@ public class PostController {
 
     /**
      *
-     * @param model
-     * @param session
-     * @param idPost
-     * @return
+     *  Функция редактирования публикации. Публикация помечается как "готовая к изменениям"
+     *
+     * @param model - передает отредактированную публикацию, все публикации и информацию о профиле
+     * @param session - возвращает из сессии номер текущего пользователя
+     * @param idPost - возвращает со страницы номер публикации, которую необходимо отредактировать
+     * @return - возвращает страницу профиля
      * @throws Exception
      */
     @RequestMapping(value = "/edit/{idPost}", method = RequestMethod.GET)
@@ -110,10 +122,12 @@ public class PostController {
 
     /**
      *
-     * @param model
-     * @param session
-     * @param post
-     * @return
+     *  Функция, которая сохраняет отредактированную публикацию.
+     *
+     * @param model - передает информацию о профиле, все публикации пользователя
+     * @param session - возвращает из сессии номер текущего пользователя
+     * @param post - получает объект публикации, который необходимо обновить в таблице БД
+     * @return - возвращает на страницу профиля
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String saveEditPost(Model model,

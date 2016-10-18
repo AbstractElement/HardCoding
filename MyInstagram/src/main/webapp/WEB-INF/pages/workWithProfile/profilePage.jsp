@@ -93,7 +93,7 @@
                                         <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
                                             <form:hidden path="idPosts"/>
                                             <form:textarea path="message" cols="40" rows="5"/><br/>
-                                            <button class="" type="submit">${save}</button>
+                                            <button type="submit">${save}</button>
                                         </c:when>
                                         <c:otherwise>
                                             <textarea cols="40" rows="5" disabled>${posts.get(i).message}
