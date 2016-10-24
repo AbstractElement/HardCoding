@@ -24,7 +24,7 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public List retrievePostsByProfileId(int idProfile) {
+    public List<Posts> retrievePostsByProfileId(int idProfile) {
         return postsDAO.retrievePostsByProfileId(idProfile);
     }
 

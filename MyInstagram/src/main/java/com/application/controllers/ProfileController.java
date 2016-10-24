@@ -25,7 +25,9 @@ public class ProfileController {
 
     /**
      *
-     * @param modelMap
+     *  Функция, которая перенаправляет на страницу всех публикаций
+     *
+     * @param modelMap - передает коллекцию всех публикаций
      * @return
      * @throws Exception
      */
@@ -37,25 +39,30 @@ public class ProfileController {
 
     /**
      *
-     * @param model
-     * @param session
-     * @param profile
+     * Получает информацию о пользователе и передает ее клиенту, перенаправляет на страницу регистрации
+     *
+     * @param model - передает информацию о пользователе
+     * @param session - возвращает из сессии номер текущего пользователя
+     * @param profile - возвращает информацию о профиле пользователя
      * @return
      */
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String toEdit(Model model,
                          HttpSession session,
                          @ModelAttribute("editProfile")Profile profile){
-        Profile profile1 = profileService.viewThisProfileFromUserId(Integer.parseInt(session.getAttribute("idUser").toString()));
+        int userId = Integer.parseInt(session.getAttribute("idUser").toString());
+        Profile profile1 = profileService.viewThisProfileFromUserId(userId);
         model.addAttribute("editProfile", profile1);
         return "workWithProfile/editProfile";
     }
 
     /**
      *
-     * @param model
-     * @param session
-     * @param profile
+     * Обновляет данные в таблице БД
+     *
+     * @param model - передает информацию о пользователе и его публикациях
+     * @param session - возвращает из сессии номер текуего пользователя
+     * @param profile - объет хранящий информацию о пользователе
      * @return
      * @throws Exception
      */
@@ -72,7 +79,9 @@ public class ProfileController {
 
     /**
      *
-     * @param model
+     * Отображает всех зарегистрированных пользователей
+     *
+     * @param model - передает в модель коллекцию, состоящую из зарегистрированных профилей
      * @return
      */
     @RequestMapping(value = "people", method = RequestMethod.GET)
@@ -84,8 +93,10 @@ public class ProfileController {
 
     /**
      *
-     * @param model
-     * @param idProfile
+     * Отображает страницу выбранного профиля.
+     *
+     * @param model - передает информацию выбранного профиля и его публикации на страницу клиента
+     * @param idProfile - номер выбранного пользователя
      * @return
      */
     @RequestMapping(value = "viewProfile/{idProfile}", method = RequestMethod.GET)
@@ -100,8 +111,10 @@ public class ProfileController {
 
     /**
      *
-     * @param model
-     * @param session
+     * Возвращает на текущего пользователя.
+     *
+     * @param model - передает информацию о текущем пользователе и его публикациях
+     * @param session - возвращает из сессии номер текущего пользователя
      * @return
      */
     @RequestMapping(value = "myPage", method = RequestMethod.GET)
