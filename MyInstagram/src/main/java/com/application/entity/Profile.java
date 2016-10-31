@@ -44,20 +44,20 @@ public class Profile implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser")
     private User currentUser;
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "profile")
-    private List<Posts> posts = new ArrayList<Posts>();
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "ownerLike")
-    private List<Likes> likes = new ArrayList<Likes>();
-
-    public List<Likes> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Likes> likes) {
-        this.likes = likes;
-    }
+//
+//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "profile")
+//    private List<Posts> posts = new ArrayList<Posts>();
+//
+//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "ownerLike")
+//    private List<Likes> likes = new ArrayList<Likes>();
+//
+//    public List<Likes> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Likes> likes) {
+//        this.likes = likes;
+//    }
 
     public String getAvatar() {
         return avatar;
@@ -67,13 +67,13 @@ public class Profile implements Serializable {
         this.avatar = avatar;
     }
 
-    public List<Posts> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Posts> posts) {
-        this.posts = posts;
-    }
+//    public List<Posts> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<Posts> posts) {
+//        this.posts = posts;
+//    }
 
     public String getFirstName() {
         return firstName;

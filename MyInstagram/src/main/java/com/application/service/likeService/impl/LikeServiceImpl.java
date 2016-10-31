@@ -34,7 +34,7 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public List<Likes> retrieveLikeById(String idPost) {
+    public List<Likes> retrieveLikeByPostId(String idPost) {
         return likesDAO.retrieveLikeByPostId(idPost);
     }
 

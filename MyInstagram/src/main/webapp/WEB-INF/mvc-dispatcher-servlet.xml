@@ -16,6 +16,8 @@
 
     <mvc:resources mapping="/resources/**" location="/resources"/>
 
+    <mvc:annotation-driven />
+
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -51,8 +53,6 @@
             <property name="paramName" value="lang" />
         </bean>
     </mvc:interceptors>
-
-    <mvc:annotation-driven />
 
     <!--Нужен для получения свойств из файла jdbc.properties-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

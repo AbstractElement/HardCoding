@@ -9,6 +9,6 @@ public interface LikeService {
     public List<Likes> retrieveLikes() throws Exception;
     public List<Likes> retrieveLikesByProfileId(int idProfile);
     public void deleteLike(Likes like) throws Exception;
-    public List<Likes> retrieveLikeById(String idPost);
+    public List<Likes> retrieveLikeByPostId(String idPost);
     public boolean thisLikeIsExist(Likes like);
 }

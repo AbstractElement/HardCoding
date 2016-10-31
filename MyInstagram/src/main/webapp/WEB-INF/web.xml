@@ -37,25 +37,25 @@
 		<url-pattern>*.png</url-pattern>
 	</servlet-mapping>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/pages/errors/404.jsp</location>
-	</error-page>
+	<!--<error-page>-->
+		<!--<error-code>404</error-code>-->
+		<!--<location>/WEB-INF/pages/errors/404.jsp</location>-->
+	<!--</error-page>-->
 
-	<error-page>
-		<error-code>500</error-code>
-		<location>/WEB-INF/pages/errors/500.jsp</location>
-	</error-page>
+	<!--<error-page>-->
+		<!--<error-code>500</error-code>-->
+		<!--<location>/WEB-INF/pages/errors/500.jsp</location>-->
+	<!--</error-page>-->
 
-	<error-page>
-		<error-code>403</error-code>
-		<location>/WEB-INF/pages/errors/403.jsp</location>
-	</error-page>
+	<!--<error-page>-->
+		<!--<error-code>403</error-code>-->
+		<!--<location>/WEB-INF/pages/errors/403.jsp</location>-->
+	<!--</error-page>-->
 
-	<error-page>
-		<error-code>400</error-code>
-		<location>/WEB-INF/pages/errors/400.jsp</location>
-	</error-page>
+	<!--<error-page>-->
+		<!--<error-code>400</error-code>-->
+		<!--<location>/WEB-INF/pages/errors/400.jsp</location>-->
+	<!--</error-page>-->
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

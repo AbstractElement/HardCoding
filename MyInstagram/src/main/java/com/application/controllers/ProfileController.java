@@ -2,16 +2,15 @@ package com.application.controllers;
 
 import com.application.entity.Posts;
 import com.application.entity.Profile;
+import com.application.service.likeService.LikeService;
 import com.application.service.postsService.PostsService;
 import com.application.service.profileService.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class ProfileController {
     private PostsService postsService;
     @Autowired
     private ProfileService profileService;
-
     /**
      *
      *  Функция, которая перенаправляет на страницу всех публикаций
