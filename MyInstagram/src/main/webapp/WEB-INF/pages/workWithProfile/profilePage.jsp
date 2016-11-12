@@ -83,9 +83,14 @@
                         <tr>
                             <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
                             <td>
-                                <a href="/likes/addLike/${posts.get(i).idPosts}">
-                                    <img style="width: 20px" src="/resources/images/like.png"></a>
-                                ${posts.get(i).likes.size()}
+                                <script>allLikes('allLikes', ${posts.get(i).idPosts})</script>
+                                <a onclick="likes('addLike', ${posts.get(i).idPosts})">
+                                    <like id="${posts.get(i).idPosts}"></like>
+                                    <img style="width: 20px; float: left" src="/resources/images/like.png"></a>
+                                <%--<div id="vv">7</div>--%>
+                                <%--<a href="/likes/addLike/${posts.get(i).idPosts}">--%>
+                                    <%--<img style="width: 20px" src="/resources/images/like.png"></a>--%>
+                                <%--${posts.get(i).likes.size()}--%>
                             </td>
                         </tr>
                         <tr>

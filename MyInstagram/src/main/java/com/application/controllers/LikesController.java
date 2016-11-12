@@ -35,36 +35,13 @@ public class LikesController {
      * После создания объекта нового лайка идет проверка на возможное присутствие данного лайка в БД.
      * Если условие оказывается верным, лайк удаляется из БД, иначе объект хранящий новый лайк записывается в БД.
      *
-     * @param model - запись в атрибут "prifile" объект профиля и запись в атрибут "posts" объект публикаций,
-     *              хранящий все публикации профиля, под профилем понимается (на чьей странице находимся)
      * @param session - необходима для получения номера текущего авторизированного пользователя
      * @param idPost - возвращает номер понравившейся публикации
      * @return - возвращает страницу профиля
      * @throws Exception
      */
-    @RequestMapping(value = "/addLike/{idPost}", method = RequestMethod.GET)
-    public String addLikes(Model model,
-                           HttpSession session,
-                           @PathVariable("idPost")int idPost) throws Exception {
-        Posts post = postsService.retrievePostById(String.valueOf(idPost));
-        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-        Profile profile = profileService.retrieveProfile(post.getProfile().getIdProfile());
-        List<Posts> posts = postsService.retrievePostsByProfileId(post.getProfile().getIdProfile());
-        Likes newLike = new Likes();
-        newLike.setIdPosts(post);
-        newLike.setOwnerLike(profileService.viewThisProfileFromUserId(idUser));
-        newLike.setTimeThisLike(new Date());
-        if (likeService.thisLikeIsExist(newLike))
-            likeService.deleteLike(newLike);
-        else
-            likeService.createLike(newLike);
-        model.addAttribute("profile", profile);
-        model.addAttribute("posts", posts);
-        return "workWithProfile/profilePage";
-    }
-
 //    @RequestMapping(value = "/addLike/{idPost}", method = RequestMethod.GET)
-//    public @ResponseBody List<Likes> addLikes(Model model,
+//    public String addLikes(Model model,
 //                           HttpSession session,
 //                           @PathVariable("idPost")int idPost) throws Exception {
 //        Posts post = postsService.retrievePostById(String.valueOf(idPost));
@@ -81,7 +58,28 @@ public class LikesController {
 //            likeService.createLike(newLike);
 //        model.addAttribute("profile", profile);
 //        model.addAttribute("posts", posts);
-//        return likeService.retrieveLikeByPostId(String.valueOf(idPost));
+//        return "workWithProfile/profilePage";
 //    }
+
+    @RequestMapping(value = "/addLike/{idPost}", method = RequestMethod.GET)
+    public @ResponseBody List<Likes> addLikes(HttpSession session,
+                                              @PathVariable int idPost) throws Exception {
+        Posts post = postsService.retrievePostById(String.valueOf(idPost));
+        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+        Likes newLike = new Likes();
+        newLike.setIdPosts(post);
+        newLike.setOwnerLike(profileService.viewThisProfileFromUserId(idUser));
+        newLike.setTimeThisLike(new Date());
+        if (likeService.thisLikeIsExist(newLike))
+            likeService.deleteLike(newLike);
+        else
+            likeService.createLike(newLike);
+        return likeService.retrieveLikeByPostId(String.valueOf(idPost));
+    }
+
+    @RequestMapping(value = "/allLikes/{idPost}", method = RequestMethod.GET)
+    public @ResponseBody List<Likes> allLikes(@PathVariable int idPost) throws Exception {
+        return likeService.retrieveLikeByPostId(String.valueOf(idPost));
+    }
 
 }

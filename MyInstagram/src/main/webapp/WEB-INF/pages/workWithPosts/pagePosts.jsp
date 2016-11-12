@@ -15,6 +15,8 @@
 <head>
     <title>StarExpress</title>
   <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/resources/js/ajaxTech.js"></script>
 </head>
 <c:if test="${sessionScope.idUser != null}">
   <body style="background: url('/resources/images/bg/left.jpg');
@@ -41,6 +43,11 @@
               </tr>
               <tr>
                 <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
+                <td>
+                  <script>allLikes('allLikes', ${posts.get(i).idPosts})</script>
+                  <a onclick="likes('addLike', ${posts.get(i).idPosts})"><like id="${posts.get(i).idPosts}"></like>
+                    <img style="width: 20px; float: left" src="/resources/images/like.png"></a>
+                </td>
               </tr>
               <tr>
                 <td colspan="3">
