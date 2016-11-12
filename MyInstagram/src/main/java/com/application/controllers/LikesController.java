@@ -63,4 +63,25 @@ public class LikesController {
         return "workWithProfile/profilePage";
     }
 
+//    @RequestMapping(value = "/addLike/{idPost}", method = RequestMethod.GET)
+//    public @ResponseBody List<Likes> addLikes(Model model,
+//                           HttpSession session,
+//                           @PathVariable("idPost")int idPost) throws Exception {
+//        Posts post = postsService.retrievePostById(String.valueOf(idPost));
+//        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+//        Profile profile = profileService.retrieveProfile(post.getProfile().getIdProfile());
+//        List<Posts> posts = postsService.retrievePostsByProfileId(post.getProfile().getIdProfile());
+//        Likes newLike = new Likes();
+//        newLike.setIdPosts(post);
+//        newLike.setOwnerLike(profileService.viewThisProfileFromUserId(idUser));
+//        newLike.setTimeThisLike(new Date());
+//        if (likeService.thisLikeIsExist(newLike))
+//            likeService.deleteLike(newLike);
+//        else
+//            likeService.createLike(newLike);
+//        model.addAttribute("profile", profile);
+//        model.addAttribute("posts", posts);
+//        return likeService.retrieveLikeByPostId(String.valueOf(idPost));
+//    }
+
 }

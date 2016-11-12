@@ -1,18 +1,13 @@
 package com.application.service.protect;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProtectedPassword {
     private String protect(String pass){
-        byte[] newPass = pass.getBytes();
-        for (int i = 0; i < newPass.length; i++)
-            newPass[i] += i;
-        StringBuilder builder = new StringBuilder();
-        for(byte symb : newPass)
-            builder.append((char)symb);
-        return builder.toString();
+        return DigestUtils.md5Hex(pass);
     }
 
     public String goProtected(String pass){
