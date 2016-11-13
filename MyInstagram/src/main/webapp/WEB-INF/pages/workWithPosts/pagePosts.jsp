@@ -28,7 +28,6 @@
     <div class="inline" id="mainColumn">
       <c:if test="${posts.size() > 0}">
         <c:forEach var="i" begin="0" end="${posts.size()-1}">
-          <div>
             <table>
               <tr>
                 <td rowspan="2">
@@ -45,7 +44,8 @@
                 <td><h5 class="time"><i>${posts.get(i).timeOfPublication}</i></h5></td>
                 <td>
                   <script>allLikes('allLikes', ${posts.get(i).idPosts})</script>
-                  <a onclick="likes('addLike', ${posts.get(i).idPosts})"><like id="${posts.get(i).idPosts}"></like>
+                  <a onclick="likes('addLike', ${posts.get(i).idPosts})">
+                    <like id="like${posts.get(i).idPosts}"></like>
                     <img style="width: 20px; float: left" src="/resources/images/like.png"></a>
                 </td>
               </tr>
@@ -55,8 +55,6 @@
                 </td>
               </tr>
             </table>
-          </div>
-          <br/>
         </c:forEach>
       </c:if>
     </div>

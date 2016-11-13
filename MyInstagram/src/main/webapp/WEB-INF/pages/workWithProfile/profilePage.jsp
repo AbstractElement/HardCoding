@@ -70,7 +70,7 @@
             <h1>${myPosts}</h1>
             <c:if test="${posts.size() > 0}">
                 <c:forEach var="i" begin="0" end="${posts.size()-1}">
-                    <table>
+                    <table id="delete${posts.get(i).idPosts}">
                         <tr>
                             <td rowspan="2" class="avatar">
                                 <img style="width: 70px" src="/resources/images/avatar/${profile.avatar}">
@@ -85,12 +85,8 @@
                             <td>
                                 <script>allLikes('allLikes', ${posts.get(i).idPosts})</script>
                                 <a onclick="likes('addLike', ${posts.get(i).idPosts})">
-                                    <like id="${posts.get(i).idPosts}"></like>
+                                    <like id="like${posts.get(i).idPosts}"></like>
                                     <img style="width: 20px; float: left" src="/resources/images/like.png"></a>
-                                <%--<div id="vv">7</div>--%>
-                                <%--<a href="/likes/addLike/${posts.get(i).idPosts}">--%>
-                                    <%--<img style="width: 20px" src="/resources/images/like.png"></a>--%>
-                                <%--${posts.get(i).likes.size()}--%>
                             </td>
                         </tr>
                         <tr>
@@ -114,12 +110,13 @@
                             <tr class="button">
                                 <td width="100px">
                                     <a href="/posts/edit/${posts.get(i).idPosts}">${edit}</a>
-                                    <a href="/posts/delete/${posts.get(i).idPosts}">${del}</a>
+                                    <%--<a href="/posts/delete/${posts.get(i).idPosts}">${del}</a>--%>
+                                    <a onclick="deletePost(${posts.get(i).idPosts})">${del}</a>
                                 </td>
                             </tr>
                         </c:if>
                     </table>
-                    <br/><br/>
+                    <%--<br/><br/>--%>
                 </c:forEach>
             </c:if>
             <c:if test="${posts.size() == 0}">

@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
@@ -79,23 +77,25 @@ public class PostController {
 
     /**
      *
-     *  Функция удаления публикации. Перенаправляет на страницу профиля.
+     *  Функция удаления публикации.
      *
-     * @param model - передает информацию о профиле и все его публикации
-     * @param session - возвращает из сессии номер текущего пользователя
      * @param idPost - возвращает со страницы номер публикации, которую необходимо удалить
-     * @return - возвращает обратно на страницу профиля
      * @throws Exception
      */
+//    @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
+//     public String deletePost(Model model,
+//                              HttpSession session,
+//                              @PathVariable int idPost) throws Exception {
+//        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+//        postsService.deletePost(idPost);
+//        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
+//        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
+//        return "workWithProfile/profilePage";
+//    }
+
     @RequestMapping(value = "/delete/{idPost}", method = RequestMethod.GET)
-    public String deletePost(Model model,
-                             HttpSession session,
-                             @PathVariable int idPost) throws Exception {
-        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+    public @ResponseBody void deletePost(@PathVariable int idPost) throws Exception {
         postsService.deletePost(idPost);
-        model.addAttribute("profile", profileService.viewThisProfileFromUserId(idUser));
-        model.addAttribute("posts", postsService.retrievePostsByProfileId(idUser));
-        return "workWithProfile/profilePage";
     }
 
     /**
