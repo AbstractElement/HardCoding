@@ -19,17 +19,9 @@ public class User implements Serializable{
     @Column(name = "email", length = 45, unique = true)
     private String email;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentUser")
-//    private Profile profile;
-//
-//    public void setProfile(Profile profile) {
-//        profile.setCurrentUser(this);
-//        this.profile = profile;
-//    }
-//
-//    public Profile getProfile() {
-//        return profile;
-//    }
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentUser")
+    private Profile profile;
+
     public Integer getId() {
         return id;
     }

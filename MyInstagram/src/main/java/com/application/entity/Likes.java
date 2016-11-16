@@ -15,7 +15,7 @@ public class Likes {
     @JoinColumn(name = "idProfile")
     private Profile ownerLike;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "idPost")
     private Posts idPosts;
 

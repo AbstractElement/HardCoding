@@ -63,7 +63,7 @@
                     </tr>
                 </table>
                 <c:if test="${sessionScope.idUser == profile.currentUser.id}">
-                    <button id="edit" type="submit">${edit}</button>
+                    <button id="edit" type="submit"><img style="width: 20px;" src="/resources/images/edit.png"></button>
                 </c:if>
                 <hr>
             </form:form>
