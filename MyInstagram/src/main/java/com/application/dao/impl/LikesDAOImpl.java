@@ -27,19 +27,21 @@ public class LikesDAOImpl implements LikesDAO {
     }
 
     public List<Likes> retrieveLikes() throws Exception {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Likes");
+        Query query = sessionFactory.getCurrentSession().createQuery("from com.application.entity.Likes");
         return query.list();
     }
 
     public List<Likes> retrieveLikesByProfileId(int idProfile){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Likes where profile = :idProfile");
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from com.application.entity.Likes where profile = :idProfile");
         query.setInteger("idProfile", idProfile);
         return query.list();
     }
 
     public void deleteLike(Likes like) throws Exception {
         try{
-            Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPosts" +
+            Query query = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.Likes where idPosts = :idPosts" +
                     " and ownerLike = :ownerLike");
             query.setInteger("idPosts", like.getIdPosts().getIdPosts());
             query.setInteger("ownerLike", like.getOwnerLike().getIdProfile());
@@ -51,7 +53,8 @@ public class LikesDAOImpl implements LikesDAO {
     }
 
     public List<Likes> retrieveLikeByPostId(String idPost) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPost");
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from com.application.entity.Likes where idPosts = :idPost");
         query.setString("idPost", idPost);
         return query.list();
     }
@@ -59,7 +62,8 @@ public class LikesDAOImpl implements LikesDAO {
     @Override
     public boolean thisLikeIsExist(Likes like) {
         try{
-            Query query = sessionFactory.getCurrentSession().createQuery("from Likes where idPosts = :idPosts" +
+            Query query = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.Likes where idPosts = :idPosts" +
                     " and ownerLike = :ownerLike");
             query.setInteger("idPosts", like.getIdPosts().getIdPosts());
             query.setInteger("ownerLike", like.getOwnerLike().getIdProfile());

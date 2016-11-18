@@ -34,7 +34,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User retrieveUser(String email, String pass) throws Exception {
         try {
-            Query q = sessionFactory.getCurrentSession().createQuery("from User where email = :email and pass = :pass");
+            Query q = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.User where email = :email and pass = :pass");
             q.setString("email", email);
             q.setString("pass", protectedPassword.goProtected(pass));
             return (User) q.uniqueResult();
@@ -46,7 +47,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean thisUserIsExist(String email){
         try{
-            Query query = sessionFactory.getCurrentSession().createQuery("from User where email = :email");
+            Query query = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.User where email = :email");
             query.setString("email", email);
             User user = (User) query.uniqueResult();
             if (user != null)
@@ -62,7 +64,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean thisTrueUserPassword(String pass, String email){
         try{
-            Query q = sessionFactory.getCurrentSession().createQuery("from User where email = :email and pass = :pass");
+            Query q = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.User where email = :email and pass = :pass");
             q.setString("email", email);
             q.setString("pass", protectedPassword.goProtected(pass));
             User user = (User) q.uniqueResult();
@@ -77,7 +80,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User retrieveUserById(int id){
-        Query q = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
+        Query q = sessionFactory.getCurrentSession().createQuery
+                ("from com.application.entity.User where id = :id");
         q.setInteger("id", id);
         return (User) q.uniqueResult();
     }

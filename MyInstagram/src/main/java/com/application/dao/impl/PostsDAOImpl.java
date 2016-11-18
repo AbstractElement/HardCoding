@@ -29,14 +29,15 @@ public class PostsDAOImpl implements PostsDAO {
 
     @Override
     public List<Posts> retrievePosts() throws Exception {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Posts order by timeOfPublication desc");
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from com.application.entity.Posts order by timeOfPublication desc");
         return query.list();
     }
 
     @Override
     public List<Posts> retrievePostsByProfileId(int idProfile){
         Query query = sessionFactory.getCurrentSession().createQuery
-                ("from Posts where profile = :idProfile order by timeOfPublication desc");
+                ("from com.application.entity.Posts where profile = :idProfile order by timeOfPublication desc");
         query.setInteger("idProfile", idProfile);
         return query.list();
     }
@@ -66,7 +67,8 @@ public class PostsDAOImpl implements PostsDAO {
 
     @Override
     public Posts retrievePostById(String idPost) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Posts where idPosts = :idPost");
+        Query query = sessionFactory.getCurrentSession().createQuery
+                ("from com.application.entity.Posts where idPosts = :idPost");
         query.setString("idPost", idPost);
         return (Posts)query.uniqueResult();
     }

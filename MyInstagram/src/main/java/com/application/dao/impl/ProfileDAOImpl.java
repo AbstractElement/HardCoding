@@ -47,7 +47,8 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Override
     public Profile viewThisProfileFromUserId(int idUser){
         try{
-            Query query = sessionFactory.getCurrentSession().createQuery("from Profile where currentUser = :idUser");
+            Query query = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.Profile where currentUser = :idUser");
             query.setInteger("idUser", idUser);
             return (Profile) query.uniqueResult();
         }catch (HibernateException ex){
@@ -58,14 +59,15 @@ public class ProfileDAOImpl implements ProfileDAO {
 
     @Override
     public List<Profile> viewAllProfiles() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Profile");
+        Query query = sessionFactory.getCurrentSession().createQuery("from com.application.entity.Profile");
         return query.list();
     }
 
     @Override
     public Profile retrieveProfile(int idProfile) {
         try{
-            Query query = sessionFactory.getCurrentSession().createQuery("from Profile where idProfile = :idProfile");
+            Query query = sessionFactory.getCurrentSession().createQuery
+                    ("from com.application.entity.Profile where idProfile = :idProfile");
             query.setInteger("idProfile", idProfile);
             return (Profile) query.uniqueResult();
         }catch (HibernateException ex){
