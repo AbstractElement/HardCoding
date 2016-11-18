@@ -63,7 +63,12 @@
                     </tr>
                 </table>
                 <c:if test="${sessionScope.idUser == profile.currentUser.id}">
-                    <button id="edit" type="submit"><img style="width: 20px;" src="/resources/images/edit.png"></button>
+                    <button class="edit" type="submit">
+                        <img style="width: 20px;" src="/resources/images/edit.png">
+                    </button>
+                    <button formaction="/profile/statistic" formmethod="post" class="edit" type="submit">
+                        <img style="width: 20px;" src="/resources/images/statistic.png">
+                    </button>
                 </c:if>
                 <hr>
             </form:form>
@@ -110,13 +115,11 @@
                             <tr class="button">
                                 <td width="100px">
                                     <a href="/posts/edit/${posts.get(i).idPosts}">${edit}</a>
-                                    <%--<a href="/posts/delete/${posts.get(i).idPosts}">${del}</a>--%>
                                     <a onclick="deletePost(${posts.get(i).idPosts})">${del}</a>
                                 </td>
                             </tr>
                         </c:if>
                     </table>
-                    <%--<br/><br/>--%>
                 </c:forEach>
             </c:if>
             <c:if test="${posts.size() == 0}">

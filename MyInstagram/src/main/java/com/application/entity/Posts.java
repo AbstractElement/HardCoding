@@ -1,6 +1,7 @@
 package com.application.entity;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,8 +51,9 @@ public class Posts {
         this.message = message;
     }
 
-    public Date getTimeOfPublication() {
-        return timeOfPublication;
+    public String getTimeOfPublication() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.M.yyyy ':' HH:mm");
+        return dateFormat.format(timeOfPublication);
     }
 
     public void setTimeOfPublication(Date timeOfPublication) {

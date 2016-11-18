@@ -124,4 +124,9 @@ public class ProfileController {
         model.addAttribute("posts", postsService.retrievePostsByProfileId(myProfile.getIdProfile()));
         return "workWithProfile/profilePage";
     }
+
+    @RequestMapping(value = "statistic", method = RequestMethod.POST)
+    public String profileStatistic(){
+        return "workWithProfile/statistic";
+    }
 }

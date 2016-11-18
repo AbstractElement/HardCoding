@@ -15,8 +15,8 @@ body{
     margin-top: 150px;
     background-color: black;
 }
-#edit{
-    margin-left: 70%;
+.edit{
+    /*margin-left: 70%;*/
     border-radius: 10px;
     font-family: Times New Roman, serif;
     font-size: medium;
