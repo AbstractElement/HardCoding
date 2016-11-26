@@ -22,7 +22,8 @@
 <head>
     <title>StarExpress</title>
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="/resources/js/ajax_libs.js"></script>
     <script type="text/javascript" src="/resources/js/ajaxTech.js"></script>
 </head>
 <c:if test="${sessionScope.idUser != null}">

@@ -52,7 +52,7 @@ public class Posts {
     }
 
     public String getTimeOfPublication() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.M.yyyy ':' HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy ':' HH:mm");
         return dateFormat.format(timeOfPublication);
     }
 

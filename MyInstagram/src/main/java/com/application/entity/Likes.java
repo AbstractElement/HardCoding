@@ -1,6 +1,7 @@
 package com.application.entity;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -15,15 +16,16 @@ public class Likes {
     @JoinColumn(name = "idProfile")
     private Profile ownerLike;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "idPost")
     private Posts idPosts;
 
     @Column(name = "timeThisLike")
     private Date timeThisLike;
 
-    public Date getTimeThisLike() {
-        return timeThisLike;
+    public String getTimeThisLike() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy ':' HH:mm");
+        return dateFormat.format(timeThisLike);
     }
 
     public void setTimeThisLike(Date timeThisLike) {

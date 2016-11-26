@@ -33,7 +33,7 @@ public class LikesDAOImpl implements LikesDAO {
 
     public List<Likes> retrieveLikesByProfileId(int idProfile){
         Query query = sessionFactory.getCurrentSession().createQuery
-                ("from com.application.entity.Likes where profile = :idProfile");
+                ("from com.application.entity.Likes where idProfile = :idProfile");
         query.setInteger("idProfile", idProfile);
         return query.list();
     }

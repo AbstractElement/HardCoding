@@ -33,9 +33,9 @@
 		});
 	</script>--%>
 </head>
-<body style="background: url('/resources/images/bg/r2d2-bg-mainpage.jpg'); background-size: cover">
+<body style="background: url('/resources/images/bg/darth-mainpage.jpg'); background-size: cover">
 	<div class="form" id="mainPage">
-		<span style="float: right; margin-top: 220px; margin-right: 10px;">
+		<span style="float: right; margin-top: 155px; margin-right: 50px;">
 			<a href="/?lang=en"><img src="/resources/images/flags/us.png"></a>
 			<a href="/?lang=ru"><img src="/resources/images/flags/ru.png"></a>
 		</span>

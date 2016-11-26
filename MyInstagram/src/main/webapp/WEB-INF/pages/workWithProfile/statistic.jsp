@@ -6,7 +6,8 @@
 <head>
     <title>Star Express</title>
     <link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="/resources/js/ajax_libs.js"></script>
     <script type="text/javascript" src="/resources/jqplot/jquery.jqplot.js"></script>
     <script type="text/javascript" src="/resources/jqplot/plugins/jqplot.highlighter.js"></script>
     <script type="text/javascript" src="/resources/jqplot/plugins/jqplot.cursor.js"></script>
@@ -15,7 +16,8 @@
     <link rel="stylesheet" type="text/css" href="/resources/jqplot/jquery.jqplot.css" />
     <script type="text/javascript" src="/resources/js/charts.js"></script>
 </head>
-<body>
+<body style="background: url('/resources/images/bg/yoda-statistic.jpg'); background-position-y: 100px;
+    background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
   <div class="inline" id="menu">
       <leftMenu:leftMenu/>
   </div>
