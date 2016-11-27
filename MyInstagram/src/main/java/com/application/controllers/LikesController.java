@@ -90,28 +90,17 @@ public class LikesController {
         return likeService.retrieveLikeByPostId(String.valueOf(idPost));
     }
 
-
+    /**
+     *
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/likesProfile", method = RequestMethod.GET)
     public @ResponseBody String[][] likesProfile(HttpSession session){
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         Profile profile = profileService.viewThisProfileFromUserId(idUser);
         List<Likes> likes = likeService.retrieveLikesByProfileId(profile.getIdProfile());
-        Map<String, Integer> countLikesInMonth = new TreeMap<String, Integer>();
-        for (Likes like : likes){
-            if(!countLikesInMonth.containsKey("01." + like.getTimeThisLike().substring(3, 10)))
-                countLikesInMonth.put("01." + like.getTimeThisLike().substring(3, 10), 1);
-            else {
-                int count = countLikesInMonth.get("01." + like.getTimeThisLike().substring(3, 10));
-                countLikesInMonth.put("01." + like.getTimeThisLike().substring(3, 10), ++count);
-            }
-        }
-        String[][] arrayLikesPerMonth = new String[countLikesInMonth.size()][2];
-        int counter = 0;
-        for (Map.Entry<String, Integer> map : countLikesInMonth.entrySet()){
-            arrayLikesPerMonth[counter][0] = map.getKey();
-            arrayLikesPerMonth[counter][1] = map.getValue().toString();
-            counter++;
-        }
-        return arrayLikesPerMonth;
+        Map<String, Integer> countLikesPerMonth = likeService.getCountLikesPerMonth(likes);
+        return likeService.convertToArrayString(countLikesPerMonth);
     }
 }
