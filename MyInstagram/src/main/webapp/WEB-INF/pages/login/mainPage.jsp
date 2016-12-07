@@ -13,29 +13,10 @@
 		StarExpress
 	</title>
 	<link href="/resources/styles/my_styles.css" rel="stylesheet" type="text/css">
-	<%---<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/resources/jquery.jqplot.js"></script>
-	<script type="text/javascript" src="/resources/plugins/jqplot.dateAxisRenderer.js"></script>
-	<link rel="stylesheet" type="text/css" href="/resources/jquery.jqplot.css" />
-	<script>
-		$(document).ready(function(){
-			var line1=[['2008-08-12 4:00PM',4], ['2008-09-12 4:00PM',6.5], ['2008-10-12 4:00PM',5.7],
-				['2008-11-12 4:00PM',9], ['2008-12-12 4:00PM',8.2]];
-			var plot1 = $.jqplot('chart1', [line1], {
-				title:'Default Date Axis',
-				axes:{
-					xaxis:{
-						renderer:$.jqplot.DateAxisRenderer
-					}
-				},
-				series:[{lineWidth:4, markerOptions:{style:'square'}}]
-			});
-		});
-	</script>--%>
 </head>
 <body style="background: url('/resources/images/bg/darth-mainpage.jpg'); background-size: cover">
 	<div class="form" id="mainPage">
-		<span style="float: right; margin-top: 155px; margin-right: 50px;">
+		<span style="float: right; margin-top: 180px; margin-right: 280px;">
 			<a href="/?lang=en"><img src="/resources/images/flags/us.png"></a>
 			<a href="/?lang=ru"><img src="/resources/images/flags/ru.png"></a>
 		</span>
