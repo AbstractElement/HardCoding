@@ -19,7 +19,9 @@
 <body style="background: url('/resources/images/bg/yoda-statistic.jpg'); background-position-y: 100px;
     background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
   <div class="inline" id="menu">
+    <c:if test="${!profile.firstName.equals('') || !profile.lastName.equals('')}">
       <leftMenu:leftMenu/>
+    </c:if>
   </div>
   <div class="inline" id="mainColumn">
     <div id="chart1" style="width: 400px; height: 300px"></div>

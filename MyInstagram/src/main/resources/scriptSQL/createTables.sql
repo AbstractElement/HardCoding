@@ -29,6 +29,7 @@ CREATE TABLE db_starexpress.posts
   idPost INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   idProfile INT REFERENCES profile(idProfile) ON UPDATE CASCADE ON DELETE CASCADE,
   message VARCHAR(255),
+#   image INT,
 #   ownerPost VARCHAR(255),
   timeOfPublication TIMESTAMP
 );

@@ -22,8 +22,9 @@
     </div>
     <div class="inline" id="mainColumn">
         <form:form action="/posts/newPost" method="post" commandName="post">
-          <form:textarea path="message" cols="40" rows="5"/><br/>
+          <form:textarea path="message" cols="50" rows="8"/><br/>
             <form:errors path="message"/><br/>
+          <%--<form:input enctype="multipart/form-data" path="image" type="file" accept="image/*"/>--%>
           <button type="submit" onclick="">${submit}</button>
         </form:form>
     </div>

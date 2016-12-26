@@ -27,8 +27,10 @@
     <script type="text/javascript" src="/resources/js/ajaxTech.js"></script>
 </head>
 <c:if test="${sessionScope.idUser != null}">
-    <body style="background: url('/resources/images/bg/right.jpg'); background-position-y: 100px;
-        background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+    <body
+        style="background: url('/resources/images/bg/right.jpg'); background-position-y: 100px;
+        background-size: cover; background-attachment: fixed; background-repeat: no-repeat;"
+    >
         <div class="inline" id="menu">
             <c:if test="${profile.firstName.equals('') || profile.lastName.equals('')}">
                 <script>
@@ -101,11 +103,12 @@
                                     <c:choose>
                                         <c:when test="${editPost.idPosts == posts.get(i).idPosts}">
                                             <form:hidden path="idPosts"/>
-                                            <form:textarea path="message" cols="40" rows="5"/><br/>
+                                            <form:textarea path="message" cols="50" rows="8"/><br/>
                                             <button type="submit">${save}</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <textarea cols="40" rows="5" disabled>${posts.get(i).message}
+                                            <%--${posts.get(i).image}--%>
+                                            <textarea cols="50" rows="8" disabled>${posts.get(i).message}
                                             </textarea>
                                         </c:otherwise>
                                     </c:choose>

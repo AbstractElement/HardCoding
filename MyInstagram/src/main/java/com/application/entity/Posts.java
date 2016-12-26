@@ -59,4 +59,12 @@ public class Posts {
     public void setTimeOfPublication(Date timeOfPublication) {
         this.timeOfPublication = timeOfPublication;
     }
+
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likes) {
+        this.likes = likes;
+    }
 }

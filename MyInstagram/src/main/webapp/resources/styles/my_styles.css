@@ -64,12 +64,13 @@ span#login{
 }
 #menu{
     width: 150px;
-    margin-left: 30%;
+    margin-left: 25%;
     position: fixed;
 }
 .lMenu a{
     font-size: 20px;
     color: black;
+    text-decoration-line: inherit;
 }
 .lMenu a:hover{
     color: red;
@@ -92,7 +93,8 @@ span#login{
     /*margin: auto;*/
 /*}*/
 #mainColumn{
-    margin-left: 40%;
+    margin-left: 37%;
+    width: 450px;
 }
 #success{
     margin-top: 200px;

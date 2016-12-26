@@ -52,7 +52,7 @@
               </tr>
               <tr>
                 <td colspan="3">
-                    <textarea cols="40" rows="5" disabled>${posts.get(i).message}</textarea>
+                    <textarea cols="50" rows="8" disabled>${posts.get(i).message}</textarea>
                 </td>
               </tr>
             </table>

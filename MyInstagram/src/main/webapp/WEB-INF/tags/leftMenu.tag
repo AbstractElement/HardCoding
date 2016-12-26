@@ -6,7 +6,7 @@
 <spring:message code="message.label.exit" var="exit"/>
 <spring:message code="message.label.myProfile" var="myProfile"/>
 
-<table class="lMenu">
+<table class="lMenu" style="width:150px;">
     <%--<tr>--%>
         <%--<td>${menu}</td>--%>
     <%--</tr>--%>

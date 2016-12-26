@@ -14,7 +14,7 @@ function paintChart(data){
             xaxis:{
                 renderer:$.jqplot.DateAxisRenderer,
                 tickOptions:{
-                    formatString:'%b&nbsp;%#d'
+                    formatString:'%b&nbsp'
                 }
             },
             yaxis:{
@@ -25,7 +25,7 @@ function paintChart(data){
         },
         highlighter: {
             show: true,
-            sizeAdjust: 7.5
+            sizeAdjust: 5.0
         },
         cursor: {
             show: false
