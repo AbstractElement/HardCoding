@@ -7,7 +7,6 @@ import com.entity.Hero;
  * Created by Vladislav on 30.01.2017.
  */
 public class CharacteristicsService {
-
     public static void addStrength(Hero hero){
         int add = hero.getCharacteristics().getStrength();
         hero.getCharacteristics().setStrength(++add);

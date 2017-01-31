@@ -3,37 +3,15 @@ package com.skills.impl;
 import com.skills.Magic;
 
 /**
- * Created by Vladislav on 30.01.2017.
- */
-public class ProtectiveMagic implements Magic{
-    private String nameMagic = "";
-    private int addHealth = 0;
-    private int addArmor = 0;
-    private boolean use = false;
+* Created by Vladislav on 30.01.2017.
+*/
+public class ProtectiveMagic extends Magic{
+    public ProtectiveMagic(){
 
-    public ProtectiveMagic(String nameMagic, int addHealth, int addArmor) {
-        this.nameMagic = nameMagic;
-        this.addArmor = addArmor;
-        this.addHealth = addHealth;
     }
 
-    public boolean isUse() {
-        return use;
+    public ProtectiveMagic(String nameMagic, int strength, int health) {
+        super(nameMagic, strength, health);
     }
 
-    public void setUse(boolean use) {
-        this.use = use;
-    }
-
-    public String getNameMagic() {
-        return nameMagic;
-    }
-
-    public int getAddHealth() {
-        return addHealth;
-    }
-
-    public int getAddArmor() {
-        return addArmor;
-    }
 }

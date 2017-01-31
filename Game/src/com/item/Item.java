@@ -3,17 +3,19 @@ package com.item;
 /**
  * Created by Vladislav on 30.01.2017.
  */
-public abstract class Item {
+public class Item {
     protected String name;
-    protected int dexterity;
     protected String skill;
     protected boolean use = false;
-    protected int addCharacteristic;
+    protected int strength;
 
-    public Item(String name, int dexterity, int addCharacteristic, String skill) {
+    public Item(){
+
+    }
+
+    public Item(String name, int strength, String skill) {
         this.name = name;
-        this.dexterity = dexterity;
-        this.addCharacteristic = addCharacteristic;
+        this.strength = strength;
         this.skill = skill;
     }
 
@@ -23,14 +25,6 @@ public abstract class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getDexterity() {
-        return dexterity;
-    }
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
     }
 
     public String getSkill() {
@@ -47,5 +41,13 @@ public abstract class Item {
 
     public void setUse(boolean use) {
         this.use = use;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 }
