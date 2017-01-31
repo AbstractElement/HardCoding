@@ -43,37 +43,46 @@ public class Fight {
         System.out.println("Нанесен урон: " + damage);
     }
 
-    public static void useMagic(Entity fighter, String nameMagic) throws IOException {
+    public static void useProtectiveMagic(Entity fighter, String nameMagic) throws IOException {
         Hero hero;
         if (fighter instanceof Hero) {
             hero = (Hero) fighter;
             if (hero.getMagics().containsKey(nameMagic)) {
                 Magic magic = hero.getMagics().get(nameMagic);
-                int health = hero.getCharacteristics().getHealth();
-                if (health > 70)
-                    hero.getCharacteristics().setHealth(100);
-                else {
-                    hero.getCharacteristics().setHealth(health + magic.getHealth());
-                }
-                System.out.println("Вы использовали " + nameMagic + " и восстановили 30 очков жизни! Ваше здоровье: " +
-                        hero.getCharacteristics().getHealth());
+                if (!magic.isUse()) {
+                    int health = hero.getCharacteristics().getHealth();
+                    if (health > 70)
+                        hero.getCharacteristics().setHealth(100);
+                    else
+                        hero.getCharacteristics().setHealth(health + magic.getHealth());
+                    System.out.println("Вы использовали " + nameMagic + " и восстановили 30 очков жизни! Ваше здоровье: " +
+                            hero.getCharacteristics().getHealth());
+                    magic.setUse(true);
+                } else
+                    System.out.println("Вы уже использовали это заклинание!");
             }
         }
-        else{
-            Random random = new Random();
-            Monster monster;
-            hero = new Hero();
-            if (fighter instanceof Monster){
-                monster = (Monster) fighter;
-                if (hero.getMagics().containsKey(nameMagic)){
-                    Magic magic = hero.getMagics().get(nameMagic);
+    }
+
+    public static void useOffensiveMagic(Entity fighter, String nameMagic) throws IOException {
+        Random random = new Random();
+        Monster monster;
+        Hero hero = new Hero();
+        if (fighter instanceof Monster){
+            monster = (Monster) fighter;
+            if (hero.getMagics().containsKey(nameMagic)){
+                Magic magic = hero.getMagics().get(nameMagic);
+                if (!magic.isUse()) {
                     int healthOfMonster = monster.getCharacteristics().getHealth();
                     int strengthOfMonster = monster.getCharacteristics().getStrength();
-                    monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth()*random.nextInt(20));
+                    monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth() * random.nextInt(20));
                     monster.getCharacteristics().setStrength(strengthOfMonster - magic.getStrength());
-                    System.out.println("Вы использовали " + nameMagic + " здоровье противника "
+                    System.out.println("Вы использовали " + nameMagic + ", здоровье противника "
                             + monster.getCharacteristics().getHealth());
+                    magic.setUse(true);
                 }
+                else
+                    System.out.println("Вы уже использовали это заклинание!");
             }
         }
     }

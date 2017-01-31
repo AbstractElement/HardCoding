@@ -1,11 +1,5 @@
 package com.skills;
 
-import com.entity.Entity;
-import com.entity.Hero;
-import com.item.Item;
-
-import java.io.IOException;
-
 /**
  * Created by Vladislav on 30.01.2017.
  */
@@ -13,7 +7,7 @@ public abstract class Magic {
     private String nameMagic = "";
     private int health = 0;
     private int strength = 0;
-    private boolean use = false;
+    private static boolean use = false;
 
     public Magic(){
 

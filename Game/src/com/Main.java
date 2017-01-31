@@ -50,13 +50,13 @@ public class Main {
                 System.out.println("1 - регенерация; 2 - огн. удар; 3 - морозный удар");
                 int chooseMagic = Integer.parseInt(reader.readLine());
                 if (chooseMagic == 1) {
-                    Fight.useMagic(hero, "Регенерация");
+                    Fight.useProtectiveMagic(hero, "Регенерация");
                 }
                 if (chooseMagic == 2) {
-                    Fight.useMagic(victim, "Огненный удар");
+                    Fight.useOffensiveMagic(victim, "Огненный удар");
                 }
                 if (chooseMagic == 3) {
-                    Fight.useMagic(victim, "Морозный удар");
+                    Fight.useOffensiveMagic(victim, "Морозный удар");
                 }
             }
             Thread.sleep(1000);

@@ -17,7 +17,4 @@ public class Monster extends Entity {
         return nameMonster;
     }
 
-    public void setNameMonster(String nameMonster) {
-        this.nameMonster = nameMonster;
-    }
 }
