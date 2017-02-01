@@ -1,11 +1,10 @@
 package com.service.parse;
 
 import com.skills.Magic;
-import com.skills.impl.OffensiveMagic;
-import com.skills.impl.ProtectiveMagic;
+import com.skills.OffensiveMagic;
+import com.skills.ProtectiveMagic;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**

@@ -47,4 +47,5 @@ public class Characteristics {
     public void setArmor(int armor) {
         this.armor = armor;
     }
+
 }

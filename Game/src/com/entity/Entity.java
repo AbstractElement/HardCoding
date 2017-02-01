@@ -9,18 +9,30 @@ import com.item.Item;
 public abstract class Entity {
     protected int level = 0;
     protected Characteristics characteristics = null;
-    protected Item item;
+    protected Item item = new Item();
 
     public Entity(int level, Item item) {
         this.level = level;
         this.characteristics = new Characteristics(0, 0, 70, 0);
-        this.item = item;
+        if (item != null)
+            this.item = item;
     }
 
     public Entity() {
         this.level = 0;
-        this.characteristics = new Characteristics(1, 1, 100, 1);
-        item = new Item();
+        this.characteristics = new Characteristics(5, 5, 100, 5);
+    }
+
+    public String toString() {
+        String sentence = "[Уровень: " + getLevel() +
+                "\nХарактеристики:" +
+                "\n Сила: " + getCharacteristics().getStrength() +
+                "\n Ловкость: " + getCharacteristics().getDexterity() +
+                "\n Здоровье: " + getCharacteristics().getHealth() +
+                "\n Броня: " + getCharacteristics().getArmor() + "]";
+        if (!getItem().getName().equals("Нет"))
+            sentence += "\nСнаряжение: " + getItem().toString() + "]";
+        return sentence;
     }
 
     public int getLevel() {
@@ -29,10 +41,6 @@ public abstract class Entity {
 
     public Characteristics getCharacteristics() {
         return characteristics;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public void setCharacteristics(Characteristics characteristics) {

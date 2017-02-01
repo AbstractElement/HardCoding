@@ -1,10 +1,10 @@
 package com.fight;
 
+import com.content.Message;
 import com.entity.Entity;
 import com.entity.Hero;
 import com.entity.Monster;
 import com.skills.Magic;
-
 
 import java.io.IOException;
 import java.util.Random;
@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Fight {
     private final static int DEFAULT_HIT_RATE = 60;
-    private final static int MODIFIER = 3;
+    private final static int MODIFIER = 2;
 
     public static boolean hit(Entity fighter1, Entity fighter2){
         Random random = new Random();
@@ -33,14 +33,17 @@ public class Fight {
 
     public static void damage(Entity fighter1, Entity fighter2){
         Random random = new Random();
-        int damage = 0;
-        if (fighter1.getItem() != null)
-            damage = fighter1.getItem().getStrength()*10;
-        damage += (fighter1.getCharacteristics().getStrength() + random.nextInt(MODIFIER)) * 10
-                    - fighter2.getCharacteristics().getStrength();
+        int damage = fighter1.getItem().getStrength()*5 + (fighter1.getCharacteristics().getStrength()
+                + random.nextInt(MODIFIER)) * 10 - fighter2.getCharacteristics().getArmor();
+        if (damage < 0)
+            damage = 0;
         int healthOfVictim = fighter2.getCharacteristics().getHealth();
         fighter2.getCharacteristics().setHealth(healthOfVictim - damage);
         System.out.println("Нанесен урон: " + damage);
+    }
+
+    public static boolean isDead(Entity fighter1){
+        return fighter1.getCharacteristics().getHealth() <= 0;
     }
 
     public static void useProtectiveMagic(Entity fighter, String nameMagic) throws IOException {
@@ -57,33 +60,56 @@ public class Fight {
                         hero.getCharacteristics().setHealth(health + magic.getHealth());
                     System.out.println("Вы использовали " + nameMagic + " и восстановили 30 очков жизни! Ваше здоровье: " +
                             hero.getCharacteristics().getHealth());
-                    magic.setUse(true);
+                    Magic.setUse(true);
                 } else
-                    System.out.println("Вы уже использовали это заклинание!");
+                    System.out.println(Message.OVER_MAGIC_MESSAGE);
             }
         }
     }
 
     public static void useOffensiveMagic(Entity fighter, String nameMagic) throws IOException {
-        Random random = new Random();
+//        Random random = new Random();
         Monster monster;
         Hero hero = new Hero();
         if (fighter instanceof Monster){
             monster = (Monster) fighter;
-            if (hero.getMagics().containsKey(nameMagic)){
+            if (hero.getMagics().containsKey(nameMagic)) {
                 Magic magic = hero.getMagics().get(nameMagic);
-                if (!magic.isUse()) {
-                    int healthOfMonster = monster.getCharacteristics().getHealth();
-                    int strengthOfMonster = monster.getCharacteristics().getStrength();
-                    monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth() * random.nextInt(20));
-                    monster.getCharacteristics().setStrength(strengthOfMonster - magic.getStrength());
-                    System.out.println("Вы использовали " + nameMagic + ", здоровье противника "
-                            + monster.getCharacteristics().getHealth());
-                    magic.setUse(true);
-                }
-                else
-                    System.out.println("Вы уже использовали это заклинание!");
+//                if (!magic.isUse()) {
+//                    int healthOfMonster = monster.getCharacteristics().getHealth();
+//                    int strengthOfMonster = monster.getCharacteristics().getStrength();
+//                    monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth() * random.nextInt(20));
+//                    monster.getCharacteristics().setStrength(strengthOfMonster - magic.getStrength());
+//                    System.out.println("Вы использовали " + nameMagic + ", сила противника уменьшена на "
+//                            + magic.getStrength());
+//                    Magic.setUse(true);
+//                }
+//                else
+//                    System.out.println(Message.OVER_MAGIC_MESSAGE);
+//            }
+                implUseMagic(monster, magic);
             }
         }
+    }
+
+    public static void useMagicOfWeapons(Hero hero, Monster monster) throws IOException {
+        String nameMagic = hero.getItem().getSkill();
+        Magic magic = hero.getMagics().get(nameMagic);
+        implUseMagic(monster, magic);
+    }
+
+    public static void implUseMagic(Monster monster, Magic magic){
+        Random random = new Random();
+        if (!magic.isUse()) {
+            int healthOfMonster = monster.getCharacteristics().getHealth();
+            int strengthOfMonster = monster.getCharacteristics().getStrength();
+            monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth() * random.nextInt(20));
+            monster.getCharacteristics().setStrength(strengthOfMonster - magic.getStrength());
+            System.out.println("Вы использовали " + magic.getNameMagic() + ", сила противника уменьшена на "
+                    + magic.getStrength());
+            Magic.setUse(true);
+        }
+        else
+            System.out.println(Message.OVER_MAGIC_MESSAGE);
     }
 }

@@ -9,9 +9,6 @@ public abstract class Magic {
     private int strength = 0;
     private static boolean use = false;
 
-    public Magic(){
-
-    }
     public Magic(String nameMagic, int strength, int health) {
         this.nameMagic = nameMagic;
         this.strength = strength;
@@ -46,7 +43,7 @@ public abstract class Magic {
         return use;
     }
 
-    public void setUse(boolean use) {
-        this.use = use;
+    public static void setUse(boolean use) {
+        Magic.use = use;
     }
 }

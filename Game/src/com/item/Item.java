@@ -4,10 +4,10 @@ package com.item;
  * Created by Vladislav on 30.01.2017.
  */
 public class Item {
-    protected String name;
-    protected String skill;
-    protected boolean use = false;
-    protected int strength;
+    protected String name = "Нет";
+    protected String skill = "Нет";
+//    protected boolean use = false;
+    protected int strength = 0;
 
     public Item(){
 
@@ -35,13 +35,13 @@ public class Item {
         this.skill = skill;
     }
 
-    public boolean isUse() {
-        return use;
-    }
-
-    public void setUse(boolean use) {
-        this.use = use;
-    }
+//    public boolean isUse() {
+//        return use;
+//    }
+//
+//    public void setUse(boolean use) {
+//        this.use = use;
+//    }
 
     public int getStrength() {
         return strength;
@@ -49,5 +49,10 @@ public class Item {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    @Override
+    public String toString() {
+        return name + "\n" + "Способность: " + skill + "; Сила: " + strength;
     }
 }

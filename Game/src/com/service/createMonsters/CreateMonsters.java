@@ -9,7 +9,6 @@ import com.service.parse.ParseNameMonsters;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -37,7 +36,7 @@ public class CreateMonsters {
         int number = random.nextInt(amountItems*2);
         if (number < amountItems){
             Item newItem = ParseItemsService.getAllItems().get(number);
-            newItem.setUse(true);
+//            newItem.setUse(true);
             return newItem;
         }
         return null;
