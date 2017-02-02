@@ -1,14 +1,16 @@
 package com.service.parse;
 
-import com.skills.Magic;
-import com.skills.OffensiveMagic;
-import com.skills.ProtectiveMagic;
+import com.entity.skills.Magic;
+import com.entity.skills.ext.OffensiveMagic;
+import com.entity.skills.ext.ProtectiveMagic;
 
 import java.io.*;
 import java.util.HashMap;
 
 /**
  * Created by Vladislav on 31.01.2017.
+ *
+ * Класс, котрый считывает данные о магии из файла и заносит их в массив.
  */
 public class ParseMagicService {
     private static BufferedReader reader = null;

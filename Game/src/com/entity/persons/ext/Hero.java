@@ -1,15 +1,20 @@
-package com.entity;
+package com.entity.persons.ext;
 
+import com.entity.persons.Entity;
 import com.service.parse.ParseMagicService;
-import com.skills.Magic;
+import com.entity.skills.Magic;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by Vladislav on 30.01.2017.
+
+ * Класс главного героя (Hero), расширяет класс сущности (Entity).
+ * Содержит поле, хранящее все магических умения.
  */
-public class Hero extends Entity{
+public class Hero extends Entity implements Serializable{
     private HashMap<String, Magic> magics = null;
 
     public Hero() throws IOException {

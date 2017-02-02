@@ -1,12 +1,14 @@
 package com.service.parse;
 
-import com.item.Item;
+import com.entity.item.Item;
 
 import java.io.*;
 import java.util.ArrayList;
 
 /**
  * Created by Vladislav on 30.01.2017.
+
+ * Класс, который считывает данные о снаряжении из файла и заносит их в массив.
  */
 public class ParseItemsService {
     private static ArrayList<Item> itemArrayList = new ArrayList<Item>();

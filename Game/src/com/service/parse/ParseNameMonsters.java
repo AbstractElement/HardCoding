@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Vladislav on 31.01.2017.
+ *
+ * Класс, который считывает данные о монстрах из файла и заносит их в массив
  */
 public class ParseNameMonsters {
     private static ArrayList<String> nameMonster = new ArrayList<String>();

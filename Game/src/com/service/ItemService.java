@@ -1,7 +1,7 @@
 package com.service;
 
-import com.entity.Hero;
-import com.entity.Monster;
+import com.entity.persons.ext.Hero;
+import com.entity.persons.ext.Monster;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +9,10 @@ import java.io.InputStreamReader;
 
 /**
  * Created by Vladislav on 01.02.2017.
+ *
+ * Класс, отвечающий за возможность подбора вещей после гибели монстра.
  */
-public class MonsterService {
+public class ItemService {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static boolean isUseItem(Monster monster){

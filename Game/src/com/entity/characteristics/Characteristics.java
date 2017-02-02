@@ -1,9 +1,15 @@
-package com.characteristics;
+package com.entity.characteristics;
+
+import java.io.Serializable;
 
 /**
  * Created by Vladislav on 30.01.2017.
+
+ * Класс, который включает в себя основные характеристики (Characteristics) персонажа
+ * (силу, ловкость, здоровье, броню).
+ *
  */
-public class Characteristics {
+public class Characteristics implements Serializable{
     private int strength;
     private int dexterity;
     private int health;

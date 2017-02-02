@@ -2,7 +2,7 @@ package com.service;
 
 
 import com.content.Message;
-import com.entity.Hero;
+import com.entity.persons.ext.Hero;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,10 +10,11 @@ import java.io.InputStreamReader;
 
 /**
  * Created by Vladislav on 30.01.2017.
+
+ * Класс, отвечающий за увеличение характеристик персонажа, после повыщения уровня.
  */
 public class CharacteristicsService {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//    private static boolean isActivate = false;
     private static int points = 0;
 
     private static void addStrength(Hero hero){
@@ -55,6 +56,5 @@ public class CharacteristicsService {
                 addArmor(hero);
             }
         }
-//        isActivate = false;
     }
 }

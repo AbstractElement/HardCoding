@@ -1,21 +1,29 @@
 package com.fight;
 
 import com.content.Message;
-import com.entity.Entity;
-import com.entity.Hero;
-import com.entity.Monster;
-import com.skills.Magic;
+import com.entity.persons.Entity;
+import com.entity.persons.ext.Hero;
+import com.entity.persons.ext.Monster;
+import com.entity.skills.Magic;
 
 import java.io.IOException;
 import java.util.Random;
 
 /**
  * Created by Vladislav on 31.01.2017.
+
+ * Класс отвечающий за действия в бою
  */
 public class Fight {
     private final static int DEFAULT_HIT_RATE = 60;
     private final static int MODIFIER = 2;
 
+    /**
+     * Функция высчитывающая шанс попадания по противнику
+     * @param fighter1 - первый противник
+     * @param fighter2 - второй противник
+     * @return - возвращает истину, если попадание совершено
+     */
     public static boolean hit(Entity fighter1, Entity fighter2){
         Random random = new Random();
         int hit = random.nextInt(101);
@@ -31,6 +39,11 @@ public class Fight {
         }
     }
 
+    /**
+     * Функция, отвечающая за нанесение урона по противнику.
+     * @param fighter1 - первый противник
+     * @param fighter2 - второй противник
+     */
     public static void damage(Entity fighter1, Entity fighter2){
         Random random = new Random();
         int damage = fighter1.getItem().getStrength()*5 + (fighter1.getCharacteristics().getStrength()
@@ -42,10 +55,21 @@ public class Fight {
         System.out.println("Нанесен урон: " + damage);
     }
 
+    /**
+     * Проверяет, остался ли жив противник после удара по нему.
+     * @param fighter1 - противник
+     * @return - возвращате истину, если здоровье противника меньше 0
+     */
     public static boolean isDead(Entity fighter1){
         return fighter1.getCharacteristics().getHealth() <= 0;
     }
 
+    /**
+     * Функция, отвечающая за использование защитной магии во время боя.
+     * @param fighter - главный герой
+     * @param nameMagic - название магии, которую выбрал персонаж
+     * @throws IOException
+     */
     public static void useProtectiveMagic(Entity fighter, String nameMagic) throws IOException {
         Hero hero;
         if (fighter instanceof Hero) {
@@ -67,37 +91,41 @@ public class Fight {
         }
     }
 
+    /**
+     * Функция, отвечающая за использование главным героем атакующей магии
+     * @param fighter - главный герой
+     * @param nameMagic - название используемой магии
+     * @throws IOException
+     */
     public static void useOffensiveMagic(Entity fighter, String nameMagic) throws IOException {
-//        Random random = new Random();
         Monster monster;
         Hero hero = new Hero();
         if (fighter instanceof Monster){
             monster = (Monster) fighter;
             if (hero.getMagics().containsKey(nameMagic)) {
                 Magic magic = hero.getMagics().get(nameMagic);
-//                if (!magic.isUse()) {
-//                    int healthOfMonster = monster.getCharacteristics().getHealth();
-//                    int strengthOfMonster = monster.getCharacteristics().getStrength();
-//                    monster.getCharacteristics().setHealth(healthOfMonster - magic.getHealth() * random.nextInt(20));
-//                    monster.getCharacteristics().setStrength(strengthOfMonster - magic.getStrength());
-//                    System.out.println("Вы использовали " + nameMagic + ", сила противника уменьшена на "
-//                            + magic.getStrength());
-//                    Magic.setUse(true);
-//                }
-//                else
-//                    System.out.println(Message.OVER_MAGIC_MESSAGE);
-//            }
                 implUseMagic(monster, magic);
             }
         }
     }
 
+    /**
+     *Функция, отвечающая за использоваие главным герое магии его оружие
+     * @param hero - главный герой
+     * @param monster - игровой объект, по которому будет совершен удар
+     * @throws IOException
+     */
     public static void useMagicOfWeapons(Hero hero, Monster monster) throws IOException {
         String nameMagic = hero.getItem().getSkill();
         Magic magic = hero.getMagics().get(nameMagic);
         implUseMagic(monster, magic);
     }
 
+    /**
+     *Функция, отвечающая за использоваие главным герое магии
+     * @param monster - игровой объект, по которому будет совершен удар
+     * @param magic - используемая магия
+     */
     public static void implUseMagic(Monster monster, Magic magic){
         Random random = new Random();
         if (!magic.isUse()) {

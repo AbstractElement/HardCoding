@@ -1,12 +1,17 @@
-package com.entity;
+package com.entity.persons;
 
-import com.characteristics.Characteristics;
-import com.item.Item;
+import com.entity.characteristics.Characteristics;
+import com.entity.item.Item;
+
+import java.io.Serializable;
 
 /**
  * Created by Vladislav on 30.01.2017.
+
+ * Класс сущности (Entity), отвечает за всех персонажей в игре.
+ * Содержит поля уровня существа, снаряжение и его характеристики.
  */
-public abstract class Entity {
+public abstract class Entity implements Serializable{
     protected int level = 0;
     protected Characteristics characteristics = null;
     protected Item item = new Item();
@@ -33,6 +38,10 @@ public abstract class Entity {
         if (!getItem().getName().equals("Нет"))
             sentence += "\nСнаряжение: " + getItem().toString() + "]";
         return sentence;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getLevel() {

@@ -1,15 +1,17 @@
 package com;
 
 import com.content.Message;
-import com.entity.Hero;
-import com.entity.Monster;
+import com.content.ReadHistory;
+import com.entity.persons.ext.Hero;
+import com.entity.persons.ext.Monster;
 import com.fight.Fight;
-import com.place.Floor;
+import com.entity.place.Floor;
 import com.service.CharacteristicsService;
-import com.service.MonsterService;
+import com.service.GameProcessService;
+import com.service.ItemService;
 import com.service.createMonsters.CreateMonsters;
 import com.service.parse.ParseItemsService;
-import com.skills.Magic;
+import com.entity.skills.Magic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,25 +29,29 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         ParseItemsService.parseWeapon();
         LinkedList<Monster> monsters = CreateMonsters.createMonster();
-        LinkedList<Floor> floors = new LinkedList<Floor>();
-        hero = new Hero();
+        LinkedList<Floor> floors = new LinkedList<>();
+        loadGame();
+        System.out.println(ReadHistory.getStory());
         for (int i = 0; i < monsters.size()-2; i += 3)
             floors.add(new Floor(new Monster[]{monsters.get(i), monsters.get(i+1), monsters.get(i+2)}));
         Monster victim = new Monster();
-        for (int i = 0; i < floors.size();) {
-            if (i == floors.size()-1 && amountDead == 3){
-                System.out.println("Поздравляю!!! Вы прошли игру и очистили башню от нечисти!");
+        int level = hero.getLevel();
+        for (; level < floors.size();) {
+            if (level == floors.size()-1 && amountDead == 3){
+                System.out.println(Message.WIN_MESSAGE);
+                reader.close();
                 System.exit(0);
             }
             else
-                i = upFloor(i);
+                level = upFloor(level);
+            System.out.println("Вы находитесь на " + level + " этаже.");
             System.out.println(Message.FIRST_CHOOSE_MENU);
             int chooseDoor = Integer.parseInt(reader.readLine());
-            openTheDoor(floors, victim, hero, i, chooseDoor - 1);
+            openTheDoor(floors, victim, hero, level, chooseDoor - 1);
         }
     }
 
-    public static boolean choose(Hero hero, Monster victim) throws IOException, InterruptedException {
+    public static boolean choose(Hero hero, Monster victim) throws IOException{
         while (victim.getCharacteristics().getHealth() > 0 && hero.getCharacteristics().getHealth() > 0) {
             System.out.println(Message.SECOND_CHOOSE_MENU);
             int choose = Integer.parseInt(reader.readLine());
@@ -79,25 +85,8 @@ public class Main {
                             Fight.useOffensiveMagic(victim, "Огненный удар");
                             Fight.damage(hero, victim);
                             if (closeTheDoor(victim)) return true;
-//                            if (Fight.isDead(victim)){
-//                                if(MonsterService.isUseItem(victim)  && !victim.getItem().getName().equals("Нет"))
-//                                    MonsterService.takeThisWeapon(victim, hero);
-//                                System.out.println("Вы победили в этой битве!");
-//                                return true;
-//                            }
-
                             break;
                         }
-//                        case 3: {
-//                            Fight.useOffensiveMagic(victim, "Морозный удар");
-//                            if (Fight.isDead(victim)){
-//                                if(MonsterService.isUseItem(victim))
-//                                    MonsterService.takeThisWeapon(victim, hero);
-//                                System.out.println("Вы победили в этой битве!");
-//                                return true;
-//                            }
-//                            break;
-//                        }
                         case 0: {
                             break;
                         }
@@ -109,15 +98,9 @@ public class Main {
                         Fight.useMagicOfWeapons(hero, victim);
                         Fight.damage(hero, victim);
                         if (closeTheDoor(victim)) return true;
-//                        if (Fight.isDead(victim)){
-//                            if(MonsterService.isUseItem(victim) && !victim.getItem().getName().equals("Нет"))
-//                                MonsterService.takeThisWeapon(victim, hero);
-//                            System.out.println("Вы победили в этой битве!");
-//                            return true;
-//                        }
                     }
                     else
-                        System.out.println("Ваше снаряжение не имеет магических способностей!");
+                        System.out.println(Message.NO_MAGIC_SKILL);
                     break;
                 }
                 case 4: {
@@ -128,9 +111,13 @@ public class Main {
                     System.out.println(victim.toString());
                     break;
                 }
-                case 0: {
-                    System.out.println("Вам удалось сбежать!");
+                case 6: {
+                    System.out.println(Message.YOU_FLED);
                     return false;
+                }
+                case 0: {
+                    GameProcessService.saveGameProcess(hero);
+                    System.exit(0);
                 }
             }
         }
@@ -140,57 +127,60 @@ public class Main {
     public static int upFloor(int i) throws IOException {
         if (amountDead == 3){
             CharacteristicsService.addPoints();
-            System.out.println("Вы убили всех монтстров на этом этаже и можете двигаться дальше." +
-                    "\nВам предоставлено 3 очка улучшения характеристик");
-//            int choose = Integer.parseInt(reader.readLine());
-//            switch (choose){
-//                case 1 : {
-//                    amountDead = 0;
-//                    return ++i;
-//                }
-//                case 2 : {
-//                    break;
-//                }
-//                case 3 : {
+            System.out.println(Message.UP_LEVEL_MESSAGE);
             amountDead = 0;
             CharacteristicsService.upLevel(hero);
-            System.out.println("Вы продвинулись на этаж выше!");
+            System.out.println(Message.NEXT_FLOOR);
+            hero.setLevel(hero.getLevel() + 1);
             return ++i;
-//                }
-//            }
         }
         return i;
     }
 
-    public static void openTheDoor(LinkedList<Floor> floors, Monster victim, Hero hero, int levelOfFloor, int idMonster)
+    public static void openTheDoor(LinkedList<Floor> floors, Monster victim, Hero hero, int level, int idMonster)
             throws IOException, InterruptedException {
-        if (floors.get(levelOfFloor).getMonsterMap()[idMonster] != null) {
-            victim = floors.get(levelOfFloor).getMonsterMap()[idMonster];
+        if (floors.get(level).getMonsterMap()[idMonster] != null) {
+            victim = floors.get(level).getMonsterMap()[idMonster];
             System.out.println(victim.getNameMonster());
             if(choose(hero, victim)) {
                 hero.getCharacteristics().setHealth(100);
-                floors.get(levelOfFloor).getMonsterMap()[idMonster] = null;
+                floors.get(level).getMonsterMap()[idMonster] = null;
                 amountDead++;
                 Magic.setUse(false);
             }
         }
         else{
-            System.out.println("Вы убили в этой стороне уже всех монстров");
+            System.out.println(Message.YOU_KILLED_ALL);
         }
     }
 
     public static boolean closeTheDoor(Monster victim){
         if (Fight.isDead(victim)){
-            if(MonsterService.isUseItem(victim) && !victim.getItem().getName().equals("Нет"))
+            if(ItemService.isUseItem(victim) && !victim.getItem().getName().equals("Нет"))
                 try {
-                    MonsterService.takeThisWeapon(victim, hero);
+                    ItemService.takeThisWeapon(victim, hero);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            System.out.println("Вы победили в этой битве!");
+            System.out.println(Message.YOU_WIN_IN_THIS_FIGHT);
             return true;
         }
         System.out.println("Здоровье врага: " + victim.getCharacteristics().getHealth());
         return false;
+    }
+
+    public static void loadGame(){
+        System.out.println("1. Загрузить последнее сохранение \n2. Начать новую игру");
+        String start;
+        try {
+            start = reader.readLine();
+            if (start.equals("1"))
+                if ((hero = GameProcessService.loadGameProcess()) == null)
+                    hero = new Hero();
+            if (start.equals("2"))
+                hero = new Hero();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
