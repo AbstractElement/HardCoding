@@ -25,7 +25,7 @@ public abstract class Entity implements Serializable{
 
     public Entity() {
         this.level = 0;
-        this.characteristics = new Characteristics(5, 5, 100, 5);
+        this.characteristics = new Characteristics(1, 1, 100, 1);
     }
 
     public String toString() {

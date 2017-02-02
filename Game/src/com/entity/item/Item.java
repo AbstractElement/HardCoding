@@ -23,6 +23,18 @@ public class Item implements Serializable{
         this.skill = skill;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
     public String getName() {
         return name;
     }

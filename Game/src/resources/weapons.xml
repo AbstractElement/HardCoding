@@ -1,0 +1,8 @@
+<weapons>
+    <weapon name="Кинжал" strength="1" skill="Нет"/>
+    <weapon name="Великий посох" strength="0" skill="Буря стихий"/>
+    <weapon name="Даэдрическая секира" strength="3" skill="Нет"/>
+    <weapon name="Острый меч" strength="2" skill="Нет"/>
+    <weapon name="Стеклянная молот" strength="2" skill="Морозный удар"/>
+    <weapon name="Клык дракона" strength="3" skill="Дух дракона"/>
+</weapons>

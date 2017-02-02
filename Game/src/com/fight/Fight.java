@@ -5,6 +5,7 @@ import com.entity.persons.Entity;
 import com.entity.persons.ext.Hero;
 import com.entity.persons.ext.Monster;
 import com.entity.skills.Magic;
+import org.jdom2.JDOMException;
 
 import java.io.IOException;
 import java.util.Random;
@@ -97,7 +98,7 @@ public class Fight {
      * @param nameMagic - название используемой магии
      * @throws IOException
      */
-    public static void useOffensiveMagic(Entity fighter, String nameMagic) throws IOException {
+    public static void useOffensiveMagic(Entity fighter, String nameMagic) throws IOException, JDOMException {
         Monster monster;
         Hero hero = new Hero();
         if (fighter instanceof Monster){

@@ -5,6 +5,7 @@ import com.entity.persons.ext.Monster;
 import com.entity.item.Item;
 import com.service.parse.ParseItemsService;
 import com.service.parse.ParseNameMonsters;
+import org.jdom2.JDOMException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,15 +26,12 @@ public class CreateMonsters {
      * @return - возвращает коллекцию монстров
      * @throws IOException
      */
-    public static LinkedList<Monster> createMonster() throws IOException {
-        ArrayList<String> nameMonsters = ParseNameMonsters.getNameMonster();
+    public static LinkedList<Monster> createMonster() throws IOException, JDOMException {
+        ArrayList<Monster> nameMonsters = ParseNameMonsters.getNameMonster();
         for (int i = 0; i < nameMonsters.size(); i++){
             Item newItem = getItemForMonster();
-            String[] monster = nameMonsters.get(i).split(":");
-            listMonsters.add(i, new Monster(monster[0], i, newItem));
-            listMonsters.get(i).setCharacteristics(
-                    new Characteristics(Integer.parseInt(monster[1]), Integer.parseInt(monster[2]),
-                            Integer.parseInt(monster[3]), Integer.parseInt(monster[4])));
+            listMonsters.add(i, new Monster(nameMonsters.get(i).getNameMonster(), i, newItem));
+            listMonsters.get(i).setCharacteristics(nameMonsters.get(i).getCharacteristics());
         }
         return listMonsters;
     }

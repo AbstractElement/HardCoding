@@ -20,6 +20,10 @@ public class Monster extends Entity {
         this.nameMonster = nameMonster;
     }
 
+    public void setNameMonster(String nameMonster) {
+        this.nameMonster = nameMonster;
+    }
+
     public String getNameMonster() {
         return nameMonster;
     }

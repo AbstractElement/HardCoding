@@ -27,11 +27,6 @@ public class CharacteristicsService {
         hero.getCharacteristics().setDexterity(++add);
     }
 
-    private static void addHealth(Hero hero){
-        int add = hero.getCharacteristics().getHealth();
-        hero.getCharacteristics().setHealth(add + 10);
-    }
-
     private static void addArmor(Hero hero){
         int add = hero.getCharacteristics().getArmor();
         hero.getCharacteristics().setArmor(++add);
@@ -46,14 +41,16 @@ public class CharacteristicsService {
             System.out.println("У вас есть " + points + " ед. улучшения");
             System.out.println(Message.UP_LEVEL_CHARACTERISTICS);
             String choose = reader.readLine();
-            if (choose.equals("1")) {
-                addStrength(hero);
-            } else if (choose.equals("2")) {
-                addDexterity(hero);
-            } else if (choose.equals("3")) {
-                addHealth(hero);
-            } else if (choose.equals("4")) {
-                addArmor(hero);
+            switch (choose) {
+                case "1":
+                    addStrength(hero);
+                    break;
+                case "2":
+                    addDexterity(hero);
+                    break;
+                case "3":
+                    addArmor(hero);
+                    break;
             }
         }
     }

@@ -1,0 +1,7 @@
+<magics>
+    <offensiveMagic name="Огненный удар" strength="0" health="2"/>
+    <offensiveMagic name="Морозный удар" strength="1" health="2"/>
+    <offensiveMagic name="Буря стихий" strength="2" health="2"/>
+    <offensiveMagic name="Дух дракона" strength="4" health="3"/>
+    <protectiveMagic name="Регенерация" health="30"/>
+</magics>

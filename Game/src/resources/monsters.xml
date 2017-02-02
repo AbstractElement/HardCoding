@@ -1,0 +1,11 @@
+<monsters>
+        <monster name="Иглокрыс" strength="1" armor="2" health="90" dexterity="0"/>
+        <monster name="Зомби" strength="1" armor="1" health="80" dexterity="1"/>
+        <monster name="Василиск" strength="2" armor="3" health="80" dexterity="1"/>
+        <monster name="Минотавр" strength="2" armor="1" health="100" dexterity="0"/>
+        <monster name="Баал" strength="2" armor="2" health="100" dexterity="1"/>
+        <monster name="Мефистофель" strength="3" armor="0" health="105" dexterity="2"/>
+        <monster name="Диабло" strength="3" armor="3" health="150" dexterity="3"/>
+        <monster name="Даэдра" strength="3" armor="5" health="120" dexterity="4"/>
+        <monster name="Архидемон" strength="5" armor="5" health="100" dexterity="5"/>
+</monsters>

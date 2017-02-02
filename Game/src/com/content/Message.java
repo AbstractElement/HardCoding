@@ -25,8 +25,7 @@ public interface Message {
     public final static String UP_LEVEL_CHARACTERISTICS =
             "1. Сила \n" +
             "2. Ловкость \n" +
-            "3. Здоровье \n" +
-            "4. Броня";
+            "3. Броня";
     public final static String OVER_MAGIC_MESSAGE =
             "Вы уже использовали заклинание в этой битве, вам необходимо восполнить силы!";
     public final static String WIN_MESSAGE =
