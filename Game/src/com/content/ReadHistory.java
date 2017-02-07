@@ -13,7 +13,7 @@ public class ReadHistory {
     public static StringBuilder getStory(){
         StringBuilder text = new StringBuilder();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/resources/history"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/resources/history.txt"));
             while (bufferedReader.ready())
                 text.append(bufferedReader.readLine()).append("\n");
             bufferedReader.close();

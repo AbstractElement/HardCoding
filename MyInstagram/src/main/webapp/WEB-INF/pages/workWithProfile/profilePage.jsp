@@ -29,8 +29,7 @@
 <c:if test="${sessionScope.idUser != null}">
     <body
         style="background: url('/resources/images/bg/right.jpg'); background-position-y: 100px;
-        background-size: cover; background-attachment: fixed; background-repeat: no-repeat;"
-    >
+        background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
         <div class="inline" id="menu">
             <c:if test="${profile.firstName.equals('') || profile.lastName.equals('')}">
                 <script>
